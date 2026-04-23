@@ -6,23 +6,20 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
-use Throwable;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
-        apiPrefix: 'api',
         health: '/up',
+        then: function () {
+            Route::get('login', function () {
+                return response()->json(['error' => 'Authentication required'], 401);
+            })->name('login');
+        },
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->statefulApi();
-
-        $middleware->alias([
-            'role' => EnsureRole::class,
-        ]);
-    })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(function (Request $request): bool {
             return $request->is('api/*') || $request->expectsJson();
@@ -43,7 +40,7 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
 
-        $exceptions->render(function (Throwable $e, Request $request) {
+        $exceptions->render(function (\Throwable $e, Request $request) {
             if (! ($request->is('api/*') || $request->expectsJson())) {
                 return null;
             }
@@ -55,5 +52,15 @@ return Application::configure(basePath: dirname(__DIR__))
                 'error' => $e->getMessage() !== '' ? $e->getMessage() : 'حدث خطأ غير متوقع',
             ], $status);
         });
+    })
+    ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->alias([
+            'role' => EnsureRole::class,
+        ]);
+
+        $middleware->api(prepend: [
+            \Illuminate\Cookie\Middleware\EncryptCookies::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+        ]);
     })
     ->create();

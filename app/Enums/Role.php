@@ -6,22 +6,24 @@ namespace App\Enums;
 
 enum Role: string
 {
+    case SuperAdmin = 'superadmin';
     case Admin = 'admin';
     case User = 'user';
-    case Auditor = 'auditor';
+    case Editor = 'editor';
 
     public function label(): string
     {
         return match ($this) {
+            self::SuperAdmin => 'مدير النظام الرئيسي',
             self::Admin => 'مدير',
             self::User => 'مستخدم',
-            self::Auditor => 'مراجع',
+            self::Editor => 'محرر',
         };
     }
 
     public function canMutate(): bool
     {
-        return $this !== self::Auditor;
+        return $this !== self::Editor;
     }
 
     /** @return array<int, string> */

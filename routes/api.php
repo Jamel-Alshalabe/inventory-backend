@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\MovementController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WarehouseController;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +76,27 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::post('users', [UserController::class, 'store']);
         Route::patch('users/{user}', [UserController::class, 'update'])->whereNumber('user');
         Route::delete('users/{user}', [UserController::class, 'destroy'])->whereNumber('user');
+        Route::get('users/roles', [UserController::class, 'getRoles']);
+
+        // Subscriptions management
+        Route::get('subscriptions', [\App\Http\Controllers\SubscriptionController::class, 'index']);
+        Route::post('subscriptions', [\App\Http\Controllers\SubscriptionController::class, 'store']);
+        Route::get('subscriptions/{subscription}', [\App\Http\Controllers\SubscriptionController::class, 'show'])->whereNumber('subscription');
+        Route::patch('subscriptions/{subscription}', [\App\Http\Controllers\SubscriptionController::class, 'update'])->whereNumber('subscription');
+        Route::delete('subscriptions/{subscription}', [\App\Http\Controllers\SubscriptionController::class, 'destroy'])->whereNumber('subscription');
+        Route::get('users/{user}/subscriptions', [\App\Http\Controllers\SubscriptionController::class, 'getUserSubscriptions'])->whereNumber('user');
+        Route::get('subscriptions/active', [\App\Http\Controllers\SubscriptionController::class, 'getActiveSubscriptions']);
+        Route::get('subscriptions/expired', [\App\Http\Controllers\SubscriptionController::class, 'getExpiredSubscriptions']);
+        Route::get('users/permissions', [UserController::class, 'getPermissions']);
+        Route::patch('users/{user}/permissions', [UserController::class, 'updatePermissions'])->whereNumber('user');
+
+        // Settings routes
+        Route::get('settings/theme', [SettingsController::class, 'getThemeSettings']);
+        Route::patch('settings/theme', [SettingsController::class, 'updateThemeSettings']);
+        Route::post('settings/theme/reset', [SettingsController::class, 'resetThemeSettings']);
+        Route::get('settings/company', [SettingsController::class, 'getCompanySettings']);
+        Route::patch('settings/company', [SettingsController::class, 'updateCompanySettings']);
+        Route::get('settings/all', [SettingsController::class, 'getAllSettings']);
 
         Route::patch('settings', [SettingController::class, 'update']);
 

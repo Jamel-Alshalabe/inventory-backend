@@ -23,7 +23,7 @@ class AuthController extends Controller
     {
         $data = $request->validated();
         /** @var User|null $user */
-        $user = User::query()->where('username', $data['username'])->first();
+        $user = User::query()->with('roles')->where('username', $data['username'])->first();
 
         if (! $user || ! Hash::check($data['password'], $user->password)) {
             return response()->json(['error' => 'بيانات الدخول غير صحيحة'], 401);
