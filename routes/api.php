@@ -28,12 +28,15 @@ Route::post('auth/login', [AuthController::class, 'login']);
 | Authenticated (Sanctum bearer token)
 |--------------------------------------------------------------------------
 */
+// Logout should work without authentication
+Route::post('auth/logout', [AuthController::class, 'logout']);
+
 Route::middleware('auth:sanctum')->group(function (): void {
     // Auth + account
     Route::get('auth/me', [AuthController::class, 'me']);
-    Route::post('auth/logout', [AuthController::class, 'logout']);
     Route::patch('account/username', [AccountController::class, 'updateUsername']);
     Route::patch('account/password', [AccountController::class, 'updatePassword']);
+    Route::patch('account/profile', [AccountController::class, 'updateProfile']);
 
     // Read-only for everyone signed in
     Route::get('dashboard', DashboardController::class);
@@ -66,8 +69,8 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::delete('invoices/{id}', [InvoiceController::class, 'destroy'])->whereNumber('id');
     });
 
-    // Admin only
-    Route::middleware('role:admin')->group(function (): void {
+    // Admin and SuperAdmin only
+    Route::middleware(['auth', 'role:admin,super_admin'])->group(function (): void {
         Route::post('warehouses', [WarehouseController::class, 'store']);
         Route::patch('warehouses/{id}', [WarehouseController::class, 'update'])->whereNumber('id');
         Route::delete('warehouses/{id}', [WarehouseController::class, 'destroy'])->whereNumber('id');

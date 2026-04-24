@@ -21,19 +21,23 @@ class UserController extends Controller
 {
     public function __construct(private readonly ActivityLogger $logger)
     {
-        $this->middleware('permission:manage-users');
     }
 
     public function index(): AnonymousResourceCollection
     {
         $authUser = Auth::user();
         
-        $query = User::with(['admin', 'assignedWarehouse', 'roles', 'permissions']);
+        $query = User::with(['admin', 'assignedWarehouse', 'roles.permissions', 'permissions'])
+        ->whereHas('roles', function($query) {
+            $query->where('name', '!=', 'super_admin');
+        });
+        
         
         // If not super admin, only show employees of the current admin
         if (!$authUser->hasRole('super_admin')) {
             $query->where('admin_id', $authUser->id);
-        }
+           
+        } 
         
         $users = $query->orderBy('username')->get();
         
@@ -63,22 +67,16 @@ class UserController extends Controller
             'admin_id' => $data['admin_id'] ?? null,
             'username' => $data['username'],
             'password' => $data['password'],
-            'role' => $data['role'],
             'assigned_warehouse_id' => $data['assignedWarehouseId'] ?? null,
+            'max_warehouses' => $data['max_warehouses'] ?? 1,
             'company_name' => $data['company_name'] ?? null,
             'company_phone' => $data['company_phone'] ?? null,
             'company_address' => $data['company_address'] ?? null,
-            'company_currency' => $data['company_currency'] ?? null,
-           
+            'company_currency' => $data['company_currency'] ?? 'ج.م',
         ]);
         
-        // Assign role
-        if (isset($data['role'])) {
-            $role = Role::where('name', $data['role'])->first();
-            if ($role) {
-                $user->attachRole($role);
-            }
-        }
+        // Assign role using Laratrust
+        $user->addRole($data['role']);
         
         // Assign specific permissions
         if (isset($data['permissions']) && is_array($data['permissions'])) {
@@ -95,46 +93,70 @@ class UserController extends Controller
         $authUser = Auth::user();
         $user = User::findOrFail($id);
         
+        // Debug logging
+        \Log::info('User update authorization check', [
+            'auth_user_id' => $authUser->id,
+            'auth_user_roles' => $authUser->roles->pluck('name')->toArray(),
+            'target_user_id' => $user->id,
+            'target_user_admin_id' => $user->admin_id,
+            'has_super_admin_role' => $authUser->hasRole('super_admin'),
+            'has_admin_role' => $authUser->hasRole('admin'),
+            'has_any_admin_role' => $authUser->hasRole(['super_admin', 'admin'])
+        ]);
+        
         // Check if user can update this user
-        if (!$authUser->hasRole('super_admin') && $user->admin_id !== $authUser->id) {
+        if (!$authUser->hasRole(['super_admin', 'admin']) && $user->admin_id !== $authUser->id) {
+            \Log::error('User update authorization failed', [
+                'reason' => 'User does not have required role and is not the admin of target user'
+            ]);
             return response()->json(['message' => 'Unauthorized'], 403);
         }
         
         $data = $request->validated();
-        $patch = array_filter([
-            'username' => $data['username'] ?? null,
-            'role' => $data['role'] ?? null,
-            'assigned_warehouse_id' => array_key_exists('assignedWarehouseId', $data)
-                ? $data['assignedWarehouseId']
-                : null,
-            'company_name' => $data['company_name'] ?? null,
-            'company_phone' => $data['company_phone'] ?? null,
-            'company_address' => $data['company_address'] ?? null,
-            'company_currency' => $data['company_currency'] ?? null,
-            
-        ], static fn ($v) => $v !== null);
+        $editableFields = $user->getEditableFields();
+        
+        // Filter data to only include editable fields for this user role
+        $patch = [];
+        
+        foreach ($editableFields as $field) {
+            if (array_key_exists($field, $data)) {
+                if ($field === 'assignedWarehouseId') {
+                    $patch['assigned_warehouse_id'] = $data[$field] !== null ? $data[$field] : null;
+                } elseif ($field === 'maxWarehouses') {
+                    $patch['max_warehouses'] = $data[$field] !== null ? $data[$field] : 1;
+                } elseif ($field === 'password' && !empty($data[$field])) {
+                    $patch[$field] = Hash::make($data[$field]);
+                } elseif ($data[$field] !== null) {
+                    $patch[$field] = $data[$field];
+                }
+            }
+        }
+        
+        // Note: Role is handled separately via relationship, not in patch
 
         // Don't allow changing admin_id unless super admin
         if (!$authUser->hasRole('super_admin')) {
             unset($patch['admin_id']);
         }
-
-        if (! empty($data['password'])) {
-            $patch['password'] = Hash::make($data['password']);
-        }
         
         $user->fill($patch)->save();
         
-        // Update role
-        if (isset($data['role'])) {
+        \Log::info('User updated successfully', [
+            'user_id' => $id,
+            'patch_data' => $patch,
+            'updated_fields' => array_keys($patch)
+        ]);
+        
+        // Update role (only super admin can change roles)
+        if ($authUser->hasRole('super_admin') && isset($data['role'])) {
             $role = Role::where('name', $data['role'])->first();
             if ($role) {
                 $user->syncRoles([$role]);
             }
         }
         
-        // Update permissions
-        if (isset($data['permissions']) && is_array($data['permissions'])) {
+        // Update permissions (only super admin can change permissions)
+        if ($authUser->hasRole('super_admin') && isset($data['permissions']) && is_array($data['permissions'])) {
             $permissions = Permission::whereIn('name', $data['permissions'])->get();
             $user->syncPermissions($permissions);
         }
@@ -149,7 +171,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         
         // Check if user can delete this user
-        if (!$authUser->hasRole('super_admin') && $user->admin_id !== $authUser->id) {
+        if (!$authUser->hasRole(['super_admin', 'admin']) && $user->admin_id !== $authUser->id) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }
         

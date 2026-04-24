@@ -21,7 +21,6 @@ class UpdateUsernameRequest extends FormRequest
                 'required', 'string', 'min:3', 'max:64',
                 Rule::unique('users', 'username')->ignore($this->user()->id),
             ],
-            'currentPassword' => ['required', 'string'],
         ];
     }
 }

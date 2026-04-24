@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
+use App\Models\UserSubscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -12,7 +12,7 @@ class SubscriptionController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $subscriptions = Subscription::with('user')
+        $subscriptions = UserSubscription::with('user')
             ->when($request->status, function ($query, $status) {
                 $query->where('status', $status);
             })
@@ -37,7 +37,7 @@ class SubscriptionController extends Controller
                 'notes' => 'nullable|string|max:500',
             ]);
 
-            $subscription = Subscription::create($validated);
+            $subscription = UserSubscription::create($validated);
             $subscription->load('user');
 
             return response()->json($subscription, 201);
@@ -46,13 +46,13 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function show(Subscription $subscription): JsonResponse
+    public function show(UserSubscription $subscription): JsonResponse
     {
         $subscription->load('user');
         return response()->json($subscription);
     }
 
-    public function update(Request $request, Subscription $subscription): JsonResponse
+    public function update(Request $request, UserSubscription $subscription): JsonResponse
     {
         try {
             $validated = $request->validate([
@@ -72,7 +72,7 @@ class SubscriptionController extends Controller
         }
     }
 
-    public function destroy(Subscription $subscription): JsonResponse
+    public function destroy(UserSubscription $subscription): JsonResponse
     {
         $subscription->delete();
         return response()->json(null, 204);
@@ -90,7 +90,7 @@ class SubscriptionController extends Controller
 
     public function getActiveSubscriptions(): JsonResponse
     {
-        $subscriptions = Subscription::with('user')
+        $subscriptions = UserSubscription::with('user')
             ->active()
             ->orderBy('end_date', 'asc')
             ->get();
@@ -100,7 +100,7 @@ class SubscriptionController extends Controller
 
     public function getExpiredSubscriptions(): JsonResponse
     {
-        $subscriptions = Subscription::with('user')
+        $subscriptions = UserSubscription::with('user')
             ->expired()
             ->orderBy('end_date', 'desc')
             ->get();

@@ -292,8 +292,6 @@ class LaratrustSeeder extends Seeder
       
         
 
-        $this->command->info('✅ Laratrust roles and permissions created successfully!');
-        $this->command->info('📋 Roles: admin, manager, user, auditor');
-        $this->command->info('🔑 Total permissions: ' . Permission::count());
+      
     }
 }

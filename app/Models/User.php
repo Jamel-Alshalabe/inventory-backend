@@ -35,7 +35,6 @@ class User extends Authenticatable
         'admin_id',
         'username',
         'password',
-        'role',
         'assigned_warehouse_id',
         'max_warehouses',
         'company_name',
@@ -53,7 +52,6 @@ class User extends Authenticatable
     {
         return [
             'password' => 'hashed',
-            'role' => Role::class,
         ];
     }
 
@@ -101,17 +99,18 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role === Role::Admin;
+        return $this->hasRole('admin');
     }
 
     public function canMutate(): bool
     {
-        return $this->role->canMutate();
+        // Users with admin or super_admin roles can mutate
+        return $this->hasRole('admin') || $this->hasRole('super_admin');
     }
 
     public function isLockedToWarehouse(): bool
     {
-        return $this->role === Role::User && $this->assigned_warehouse_id !== null;
+        return $this->hasRole('user') && $this->assigned_warehouse_id !== null;
     }
 
     public function getCompanyDisplayName(): string
@@ -138,6 +137,58 @@ class User extends Authenticatable
 
     public function hasPermission(string $permission): bool
     {
-        return $this->hasRole('admin') || $this->hasPermission($permission);
+        return $this->hasRole('admin') || parent::hasPermission($permission);
+    }
+
+    public function canEditUsername(): bool
+    {
+        return true; // All users can edit their own username
+    }
+
+    public function canEditPassword(): bool
+    {
+        return true; // All users can edit their own password
+    }
+
+    public function canEditCompanyInfo(): bool
+    {
+        $userRole = $this->roles->first()?->name;
+        return $userRole !== 'super_admin';
+    }
+
+    public function canEditInvoiceSettings(): bool
+    {
+        $userRole = $this->roles->first()?->name;
+        return $userRole !== 'super_admin';
+    }
+
+    public function canEditPersonalInfo(): bool
+    {
+        $userRole = $this->roles->first()?->name;
+        return $userRole !== 'super_admin';
+    }
+
+    public function getEditableFields(): array
+    {
+        $userRole = $this->roles->first()?->name;
+        
+        if ($userRole === 'super_admin') {
+            return ['username', 'password', 'max_warehouses'];
+        }
+        
+        if ($userRole === 'admin') {
+            return [
+                'username',
+                'password',
+                'max_warehouses',
+                'company_name',
+                'company_phone',
+                'company_address',
+                'company_currency'
+            ];
+        }
+        
+        // Other roles (User, Editor) - can only edit their own info
+        return ['username', 'password'];
     }
 }
