@@ -63,6 +63,27 @@ class DashboardService
             ])
             ->all();
 
+        // Get daily movements for the last 7 days
+        $dailyMovements = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::today()->subDays($i);
+            $dayIn = (float) Movement::forWarehouse($warehouseId)
+                ->where('type', MovementType::In)
+                ->whereDate('created_at', $date)
+                ->sum('total');
+                
+            $dayOut = (float) Movement::forWarehouse($warehouseId)
+                ->where('type', MovementType::Out)
+                ->whereDate('created_at', $date)
+                ->sum('total');
+                
+            $dailyMovements[] = [
+                'date' => $date->format('Y-m-d'),
+                'in' => $dayIn,
+                'out' => $dayOut,
+            ];
+        }
+
         return [
             'totalProducts' => $totalProducts,
             'totalQuantity' => $totalQuantity,
@@ -75,6 +96,7 @@ class DashboardService
             'todayOut' => $todayOut,
             'recentMovements' => $recentMovements,
             'topProducts' => $topProducts,
+            'dailyMovements' => $dailyMovements,
         ];
     }
 }
