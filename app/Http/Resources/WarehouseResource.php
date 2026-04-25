@@ -15,6 +15,11 @@ class WarehouseResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'admin_id' => $this->admin_id,
+            'admin' => $this->whenLoaded('admin', fn() => [
+                'id' => $this->admin->id,
+                'username' => $this->admin->username,
+            ]),
             'createdAt' => $this->created_at?->toIso8601String(),
         ];
     }

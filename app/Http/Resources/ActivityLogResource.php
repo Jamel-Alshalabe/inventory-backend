@@ -14,10 +14,18 @@ class ActivityLogResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'action' => $this->action,
-            'detail' => $this->detail,
-            'username' => $this->username,
+            'adminId' => $this->admin_id,
+            'logName' => $this->log_name,
+            'description' => $this->description,
+            'subjectType' => $this->subject_type,
+            'subjectId' => $this->subject_id,
+            'causerType' => $this->causer_type,
+            'causerId' => $this->causer_id,
+            'causerUsername' => $this->causer?->username ?? 'system',
+            'properties' => $this->properties ? json_decode($this->properties, true) : null,
+            'batchUuid' => $this->batch_uuid,
             'createdAt' => $this->created_at?->toIso8601String(),
+            'updatedAt' => $this->updated_at?->toIso8601String(),
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Invoice\StoreInvoiceRequest;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
+use App\Services\ActivityLogger;
 use App\Services\InvoiceService;
 use App\Services\WarehouseScope;
 use Illuminate\Http\JsonResponse;
@@ -19,6 +20,7 @@ class InvoiceController extends Controller
     public function __construct(
         private readonly InvoiceService $invoices,
         private readonly WarehouseScope $scope,
+        private readonly ActivityLogger $logger,
     ) {}
 
     public function index(Request $request): AnonymousResourceCollection
@@ -60,6 +62,10 @@ class InvoiceController extends Controller
             $q->where('warehouse_id', $warehouseId);
         }
         $invoice = $q->firstOrFail();
+        
+        // Log the deletion
+        $this->logger->log('حذف فاتورة', "فاتورة #{$invoice->invoice_number} - {$invoice->customer_name}");
+        
         $invoice->delete();
         return response()->json(['ok' => true]);
     }

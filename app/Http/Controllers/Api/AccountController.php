@@ -72,4 +72,60 @@ class AccountController extends Controller
         $this->logger->log('تحديث الملف الشخصي');
         return new UserResource($user);
     }
+
+    public function getUserSettings(): JsonResponse
+    {
+        $user = request()->user();
+        
+        // Get user-specific settings from user table
+        $settings = [
+            'companyName' => $user->company_name ?? '',
+            'companyPhone' => $user->company_phone ?? '',
+            'companyAddress' => $user->company_address ?? '',
+            'currency' => $user->company_currency ?? 'ج.م',
+        ];
+        
+        return response()->json($settings);
+    }
+
+    public function updateUserSettings(): JsonResponse
+    {
+        $user = request()->user();
+        $data = request()->validate([
+            'companyName' => 'nullable|string|max:255',
+            'companyPhone' => 'nullable|string|max:20',
+            'companyAddress' => 'nullable|string|max:500',
+            'currency' => 'nullable|string|max:10',
+        ]);
+        
+        // Update user settings in user table
+        if (isset($data['companyName'])) {
+            $user->company_name = $data['companyName'];
+        }
+        
+        if (isset($data['companyPhone'])) {
+            $user->company_phone = $data['companyPhone'];
+        }
+        
+        if (isset($data['companyAddress'])) {
+            $user->company_address = $data['companyAddress'];
+        }
+        
+        if (isset($data['currency'])) {
+            $user->company_currency = $data['currency'];
+        }
+        
+        $user->save();
+        $this->logger->log('تحديث إعدادات المستخدم');
+        
+        // Return updated settings
+        $settings = [
+            'companyName' => $user->company_name ?? '',
+            'companyPhone' => $user->company_phone ?? '',
+            'companyAddress' => $user->company_address ?? '',
+            'currency' => $user->company_currency ?? 'ج.م',
+        ];
+        
+        return response()->json($settings);
+    }
 }

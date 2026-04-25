@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 | Public
 |--------------------------------------------------------------------------
 */
-Route::post('auth/login', [AuthController::class, 'login']);
+Route::post('auth/login', [AuthController::class, 'login'])->middleware('subscription.check');
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,10 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::patch('account/password', [AccountController::class, 'updatePassword']);
     Route::patch('account/profile', [AccountController::class, 'updateProfile']);
 
+    // User-specific settings
+    Route::get('user/settings', [AccountController::class, 'getUserSettings']);
+    Route::patch('user/settings', [AccountController::class, 'updateUserSettings']);
+
     // Read-only for everyone signed in
     Route::get('dashboard', DashboardController::class);
     Route::get('products', [ProductController::class, 'index']);
@@ -45,7 +49,6 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('movements', [MovementController::class, 'index']);
     Route::get('invoices', [InvoiceController::class, 'index']);
     Route::get('invoices/{id}', [InvoiceController::class, 'show'])->whereNumber('id');
-    Route::get('warehouses', [WarehouseController::class, 'index']);
     Route::get('settings', [SettingController::class, 'index']);
     Route::prefix('reports')->controller(ReportController::class)->group(function (): void {
         Route::get('sales', 'sales');
@@ -55,7 +58,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::get('invoices', 'invoices');
     });
 
-    // Admin + user (mutating operations) — auditor blocked at the FormRequest layer
+    // Admin + user (mutating operations) — editor blocked at the FormRequest layer
     Route::middleware('role:admin,user')->group(function (): void {
         Route::post('products', [ProductController::class, 'store']);
         Route::patch('products/{id}', [ProductController::class, 'update'])->whereNumber('id');
@@ -63,6 +66,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::post('products/bulk', [ProductController::class, 'bulk']);
 
         Route::post('movements', [MovementController::class, 'store']);
+        Route::patch('movements/{id}', [MovementController::class, 'update'])->whereNumber('id');
         Route::delete('movements/{id}', [MovementController::class, 'destroy'])->whereNumber('id');
 
         Route::post('invoices', [InvoiceController::class, 'store']);
@@ -71,6 +75,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
 
     // Admin and SuperAdmin only
     Route::middleware(['auth', 'role:admin,super_admin'])->group(function (): void {
+        Route::get('warehouses', [WarehouseController::class, 'index']);
         Route::post('warehouses', [WarehouseController::class, 'store']);
         Route::patch('warehouses/{id}', [WarehouseController::class, 'update'])->whereNumber('id');
         Route::delete('warehouses/{id}', [WarehouseController::class, 'destroy'])->whereNumber('id');
@@ -82,14 +87,14 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::get('users/roles', [UserController::class, 'getRoles']);
 
         // Subscriptions management
-        Route::get('subscriptions', [\App\Http\Controllers\SubscriptionController::class, 'index']);
-        Route::post('subscriptions', [\App\Http\Controllers\SubscriptionController::class, 'store']);
-        Route::get('subscriptions/{subscription}', [\App\Http\Controllers\SubscriptionController::class, 'show'])->whereNumber('subscription');
-        Route::patch('subscriptions/{subscription}', [\App\Http\Controllers\SubscriptionController::class, 'update'])->whereNumber('subscription');
-        Route::delete('subscriptions/{subscription}', [\App\Http\Controllers\SubscriptionController::class, 'destroy'])->whereNumber('subscription');
-        Route::get('users/{user}/subscriptions', [\App\Http\Controllers\SubscriptionController::class, 'getUserSubscriptions'])->whereNumber('user');
-        Route::get('subscriptions/active', [\App\Http\Controllers\SubscriptionController::class, 'getActiveSubscriptions']);
-        Route::get('subscriptions/expired', [\App\Http\Controllers\SubscriptionController::class, 'getExpiredSubscriptions']);
+        Route::get('subscriptions', [\App\Http\Controllers\Api\SubscriptionController::class, 'index']);
+        Route::post('subscriptions', [\App\Http\Controllers\Api\SubscriptionController::class, 'store']);
+        Route::get('subscriptions/{subscription}', [\App\Http\Controllers\Api\SubscriptionController::class, 'show'])->whereNumber('subscription');
+        Route::patch('subscriptions/{subscription}', [\App\Http\Controllers\Api\SubscriptionController::class, 'update'])->whereNumber('subscription');
+        Route::delete('subscriptions/{subscription}', [\App\Http\Controllers\Api\SubscriptionController::class, 'destroy'])->whereNumber('subscription');
+        Route::get('users/{user}/subscriptions', [\App\Http\Controllers\Api\SubscriptionController::class, 'getUserSubscriptions'])->whereNumber('user');
+        Route::get('subscriptions/active', [\App\Http\Controllers\Api\SubscriptionController::class, 'getActiveSubscriptions']);
+        Route::get('subscriptions/expired', [\App\Http\Controllers\Api\SubscriptionController::class, 'getExpiredSubscriptions']);
         Route::get('users/permissions', [UserController::class, 'getPermissions']);
         Route::patch('users/{user}/permissions', [UserController::class, 'updatePermissions'])->whereNumber('user');
 
@@ -103,7 +108,17 @@ Route::middleware('auth:sanctum')->group(function (): void {
 
         Route::patch('settings', [SettingController::class, 'update']);
 
-        Route::get('logs', [ActivityLogController::class, 'index']);
-        Route::delete('logs', [ActivityLogController::class, 'destroy']);
+        Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin,super_admin');
+        Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');
+
+        // Test ActivityLogger
+        Route::get('test-activity-log', function () {
+            Log::info('Testing ActivityLogger from route');
+
+            $logger = app(\App\Services\ActivityLogger::class);
+            $logger->log('اختبار من route', 'هذا اختبار من route مباشر');
+
+            return response()->json(['message' => 'Activity log test completed']);
+        });
     });
 });

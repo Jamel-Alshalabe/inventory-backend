@@ -7,11 +7,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Warehouse\StoreWarehouseRequest;
 use App\Http\Resources\WarehouseResource;
+use App\Models\Product;
 use App\Models\Warehouse;
+use App\Models\User;
 use App\Services\ActivityLogger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class WarehouseController extends Controller
 {
@@ -19,21 +23,77 @@ class WarehouseController extends Controller
     {
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection|JsonResponse
     {
-        return WarehouseResource::collection(Warehouse::query()->orderBy('name')->get());
+        $authUser = Auth::user();
+        
+        // Check if user has permission to view warehouses
+        if (!$authUser->hasPermission('view-warehouses')) {
+            return response()->json(['message' => 'ليس لديك صلاحية لعرض المخازن'], 403);
+        }
+        
+        $query = Warehouse::with('admin');
+        
+        // Super admin sees all warehouses
+        if (!$authUser->hasRole('super_admin')) {
+            // Regular admin only sees their own warehouses
+            $query->where('admin_id', $authUser->id);
+        }
+        
+        return WarehouseResource::collection($query->orderBy('name')->get());
     }
 
-    public function store(StoreWarehouseRequest $request): WarehouseResource
+    public function store(StoreWarehouseRequest $request): WarehouseResource|JsonResponse
     {
-        $w = Warehouse::create($request->validated());
+        $authUser = Auth::user();
+        
+        // Only admins can create warehouses
+        if (!$authUser->hasRole('admin') && !$authUser->hasRole('super_admin')) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+        
+        // Check warehouse limit for non-super admins
+        if (!$authUser->hasRole('super_admin')) {
+            $currentWarehouseCount = Warehouse::where('admin_id', $authUser->id)->count();
+            $maxWarehouses = $authUser->max_warehouses ?? 1;
+            
+            if ($currentWarehouseCount >= $maxWarehouses) {
+                Log::warning('Warehouse creation denied - limit reached', [
+                    'user_id' => $authUser->id,
+                    'current_count' => $currentWarehouseCount,
+                    'max_allowed' => $maxWarehouses
+                ]);
+                
+                return response()->json([
+                    'message' => 'لا يمكن إنشاء المزيد من المخازن. لقد وصلت إلى الحد الأقصى المسموح به.',
+                    'current_count' => $currentWarehouseCount,
+                    'max_allowed' => $maxWarehouses
+                ], 403);
+            }
+        }
+        
+        $data = $request->validated();
+        
+        // Set admin_id for non-super admin users
+        if (!$authUser->hasRole('super_admin')) {
+            $data['admin_id'] = $authUser->id;
+        }
+        
+        $w = Warehouse::create($data);
         $this->logger->log('إضافة مخزن', $w->name);
         return new WarehouseResource($w);
     }
 
-    public function update(Request $request, int $id): WarehouseResource
+    public function update(Request $request, int $id): WarehouseResource|JsonResponse
     {
+        $authUser = Auth::user();
         $w = Warehouse::findOrFail($id);
+        
+        // Check authorization - users can only edit their own warehouses (except super admin)
+        if (!$authUser->hasRole('super_admin') && $w->admin_id !== $authUser->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+        
         $data = $request->validate(['name' => ['required', 'string', 'max:191']]);
         $w->update($data);
         $this->logger->log('تعديل مخزن', $w->name);
@@ -42,9 +102,29 @@ class WarehouseController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
+        $authUser = Auth::user();
         $w = Warehouse::findOrFail($id);
+        
+        // Check authorization - users can only delete their own warehouses (except super admin)
+        if (!$authUser->hasRole('super_admin') && $w->admin_id !== $authUser->id) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+        
+        // Count products before deletion for logging
+        $productCount = Product::where('warehouse_id', $id)->count();
+        
+        // Delete all products in the warehouse
+        Product::where('warehouse_id', $id)->delete();
+        
+        // Delete the warehouse
         $w->delete();
-        $this->logger->log('حذف مخزن', $w->name);
-        return response()->json(['ok' => true]);
+        
+        // Log the deletion with product count
+        $this->logger->log('حذف مخزن', "{$w->name} (مع {$productCount} منتج)");
+        
+        return response()->json([
+            'ok' => true,
+            'message' => "تم حذف المخزن {$w->name} وجميع المنتجات التي بداخله ({$productCount} منتج)"
+        ]);
     }
 }

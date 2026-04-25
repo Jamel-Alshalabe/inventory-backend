@@ -68,7 +68,7 @@ class UserController extends Controller
             'username' => $data['username'],
             'password' => $data['password'],
             'assigned_warehouse_id' => $data['assignedWarehouseId'] ?? null,
-            'max_warehouses' => $data['max_warehouses'] ?? 1,
+            'max_warehouses' => $admin->hasRole('super_admin') ? ($data['max_warehouses'] ?? 1) : 1,
             'company_name' => $data['company_name'] ?? null,
             'company_phone' => $data['company_phone'] ?? null,
             'company_address' => $data['company_address'] ?? null,
@@ -94,15 +94,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         
         // Debug logging
-        \Log::info('User update authorization check', [
-            'auth_user_id' => $authUser->id,
-            'auth_user_roles' => $authUser->roles->pluck('name')->toArray(),
-            'target_user_id' => $user->id,
-            'target_user_admin_id' => $user->admin_id,
-            'has_super_admin_role' => $authUser->hasRole('super_admin'),
-            'has_admin_role' => $authUser->hasRole('admin'),
-            'has_any_admin_role' => $authUser->hasRole(['super_admin', 'admin'])
-        ]);
+       
         
         // Check if user can update this user
         if (!$authUser->hasRole(['super_admin', 'admin']) && $user->admin_id !== $authUser->id) {
@@ -234,6 +226,9 @@ class UserController extends Controller
         
         $permissions = Permission::whereIn('name', $request->permissions)->get();
         $user->syncPermissions($permissions);
+        
+        // Log the activity
+        $this->logger->log('تحديث صلاحيات', "تحديث صلاحيات المستخدم {$user->username}");
         
         return response()->json([
             'message' => 'Permissions updated successfully',
