@@ -29,130 +29,36 @@ class LaratrustSeeder extends Seeder
         $permissions = [
             // Users Management
             [
-                'name' => 'create-users',
+                'name' => 'view-users',
                 'display_name' => 'إنشاء المستخدمين',
                 'description' => 'القدرة على إنشاء مستخدمين جدد',
             ],
-            [
-                'name' => 'edit-users',
-                'display_name' => 'تعديل المستخدمين',
-                'description' => 'القدرة على تعديل بيانات المستخدمين',
-            ],
-            [
-                'name' => 'delete-users',
-                'display_name' => 'حذف المستخدمين',
-                'description' => 'القدرة على حذف المستخدمين',
-            ],
-            [
-                'name' => 'view-users',
-                'display_name' => 'عرض المستخدمين',
-                'description' => 'القدرة على عرض قائمة المستخدمين',
-            ],
-
-            // Subscriptions Management
-            [
-                'name' => 'create-subscriptions',
-                'display_name' => 'إنشاء الاشتراكات',
-                'description' => 'القدرة على إنشاء اشتراكات جديدة',
-            ],
-            [
-                'name' => 'edit-subscriptions',
-                'display_name' => 'تعديل الاشتراكات',
-                'description' => 'القدرة على تعديل بيانات الاشتراكات',
-            ],
-            [
-                'name' => 'delete-subscriptions',
-                'display_name' => 'حذف الاشتراكات',
-                'description' => 'القدرة على حذف الاشتراكات',
-            ],
+        
             [
                 'name' => 'view-subscriptions',
                 'display_name' => 'عرض الاشتراكات',
                 'description' => 'القدرة على عرض قائمة الاشتراكات',
             ],
 
-            // Products Management
-            [
-                'name' => 'create-products',
-                'display_name' => 'إنشاء المنتجات',
-                'description' => 'القدرة على إضافة منتجات جديدة',
-            ],
-            [
-                'name' => 'edit-products',
-                'display_name' => 'تعديل المنتجات',
-                'description' => 'القدرة على تعديل بيانات المنتجات',
-            ],
-            [
-                'name' => 'delete-products',
-                'display_name' => 'حذف المنتجات',
-                'description' => 'القدرة على حذف المنتجات',
-            ],
+           
             [
                 'name' => 'view-products',
                 'display_name' => 'عرض المنتجات',
                 'description' => 'القدرة على عرض قائمة المنتجات',
             ],
 
-            // Stock Movements
-            [
-                'name' => 'create-movements',
-                'display_name' => 'إنشاء حركات المخزون',
-                'description' => 'القدرة على إنشاء حركات مخزون (إدخال/إخراج)',
-            ],
-            [
-                'name' => 'edit-movements',
-                'display_name' => 'تعديل حركات المخزون',
-                'description' => 'القدرة على تعديل حركات المخزون',
-            ],
-            [
-                'name' => 'delete-movements',
-                'display_name' => 'حذف حركات المخزون',
-                'description' => 'القدرة على حذف حركات المخزون',
-            ],
             [
                 'name' => 'view-movements',
                 'display_name' => 'عرض حركات المخزون',
                 'description' => 'القدرة على عرض حركات المخزون',
             ],
 
-            // Invoices Management
-            [
-                'name' => 'create-invoices',
-                'display_name' => 'إنشاء الفواتير',
-                'description' => 'القدرة على إنشاء فواتير مبيعات',
-            ],
-            [
-                'name' => 'edit-invoices',
-                'display_name' => 'تعديل الفواتير',
-                'description' => 'القدرة على تعديل الفواتير',
-            ],
-            [
-                'name' => 'delete-invoices',
-                'display_name' => 'حذف الفواتير',
-                'description' => 'القدرة على حذف الفواتير',
-            ],
             [
                 'name' => 'view-invoices',
                 'display_name' => 'عرض الفواتير',
                 'description' => 'القدرة على عرض قائمة الفواتير',
             ],
 
-            // Warehouses Management
-            [
-                'name' => 'create-warehouses',
-                'display_name' => 'إنشاء المستودعات',
-                'description' => 'القدرة على إنشاء مستودعات جديدة',
-            ],
-            [
-                'name' => 'edit-warehouses',
-                'display_name' => 'تعديل المستودعات',
-                'description' => 'القدرة على تعديل بيانات المستودعات',
-            ],
-            [
-                'name' => 'delete-warehouses',
-                'display_name' => 'حذف المستودعات',
-                'description' => 'القدرة على حذف المستودعات',
-            ],
             [
                 'name' => 'view-warehouses',
                 'display_name' => 'عرض المستودعات',
@@ -165,11 +71,7 @@ class LaratrustSeeder extends Seeder
                 'display_name' => 'عرض التقارير',
                 'description' => 'القدرة على عرض التقارير المالية والمخزنية',
             ],
-            [
-                'name' => 'export-reports',
-                'display_name' => 'تصدير التقارير',
-                'description' => 'القدرة على تصدير التقارير',
-            ],
+           
 
             // Settings
             [
@@ -184,11 +86,7 @@ class LaratrustSeeder extends Seeder
                 'display_name' => 'عرض السجلات',
                 'description' => 'القدرة على عرض سجلات النشاط',
             ],
-            [
-                'name' => 'clear-logs',
-                'display_name' => 'مسح السجلات',
-                'description' => 'القدرة على مسح سجلات النشاط',
-            ],
+        
 
             // Dashboard
             [
