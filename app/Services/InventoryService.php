@@ -15,7 +15,6 @@ use RuntimeException;
 class InventoryService
 {
     public function __construct(
-        private readonly RecordLimiter $limiter,
         private readonly ActivityLogger $logger,
     ) {}
 
@@ -27,8 +26,6 @@ class InventoryService
         if ($quantity <= 0) {
             throw new InvalidArgumentException('الكمية يجب أن تكون أكبر من صفر');
         }
-
-        $this->limiter->ensureRoom();
 
         return DB::transaction(function () use ($type, $productCode, $quantity, $price, $warehouseId): Movement {
             $product = Product::query()

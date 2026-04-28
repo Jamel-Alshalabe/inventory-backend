@@ -15,7 +15,6 @@ use RuntimeException;
 class InvoiceService
 {
     public function __construct(
-        private readonly RecordLimiter $limiter,
         private readonly ActivityLogger $logger,
     ) {}
 
@@ -30,8 +29,6 @@ class InvoiceService
         if ($items === []) {
             throw new RuntimeException('الأصناف مطلوبة', 422);
         }
-
-        $this->limiter->ensureRoom();
 
         return DB::transaction(function () use ($customerName, $items, $warehouseId): Invoice {
             $fullItems = [];

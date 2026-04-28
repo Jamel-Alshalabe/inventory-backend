@@ -1,634 +1,214 @@
-[2026-04-27 13:32:24] local.INFO: SuperAdmin login - bypassing subscription check {"user_id":1,"username":"superadmin"} 
-[2026-04-27 13:32:25] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"superadmin","admin_id":null} 
-[2026-04-27 13:32:26] local.INFO: UserResource Debug for user 1 {"roles_count":1,"roles":["super_admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 13:32:26] local.INFO: Processing role: super_admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 13:32:26] local.INFO: Force loaded permissions for role: super_admin {"permissions_count":9,"permissions":["create-users","edit-users","delete-users","view-users","create-subscriptions","edit-subscriptions","delete-subscriptions","view-subscriptions","manage-settings"]} 
-[2026-04-27 13:32:26] local.INFO: Force loaded direct permissions for user: 1 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 13:32:26] local.INFO: Final permissions for user 1 {"permissions":["create-users","edit-users","delete-users","view-users","create-subscriptions","edit-subscriptions","delete-subscriptions","view-subscriptions","manage-settings"],"count":9} 
-[2026-04-27 13:32:28] local.INFO: EnsureRole middleware check {"user_id":1,"user_roles":["super_admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 13:32:28] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 13:32:28] local.INFO: Checking role {"role":"super_admin","has_role":true} 
-[2026-04-27 13:32:28] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 13:32:28] local.ERROR: Call to undefined method App\Models\User::hasPermission() {"userId":1,"exception":"[object] (BadMethodCallException(code: 0): Call to undefined method App\\Models\\User::hasPermission() at C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php:67)
-[stacktrace]
-#0 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(36): Illuminate/Database/Eloquent/Model::throwBadMethodCallException('hasPermission')
-#1 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2372): Illuminate/Database/Eloquent/Model->forwardCallTo(Object(Illuminate/Database/Eloquent/Builder), 'hasPermission', Array)
-#2 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/app/Models/User.php(140): Illuminate/Database/Eloquent/Model->__call('hasPermission', Array)
-#3 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/app/Http/Controllers/Api/WarehouseController.php(31): App/Models/User->hasPermission('view-warehouses')
-#4 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(47): App/Http/Controllers/Api/WarehouseController->index()
-#5 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php(266): Illuminate/Routing/ControllerDispatcher->dispatch(Object(Illuminate/Routing/Route), Object(App/Http/Controllers/Api/WarehouseController), 'index')
-#6 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php(212): Illuminate/Routing/Route->runController()
-#7 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate/Routing/Route->run()
-#8 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate/Routing/Router->Illuminate/Routing/{closure}(Object(Illuminate/Http/Request))
-#9 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/app/Http/Middleware/EnsureRole.php(61): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#10 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): App/Http/Middleware/EnsureRole->handle(Object(Illuminate/Http/Request), Object(Closure), 'admin', 'super_admin')
-#11 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#12 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Routing/Middleware/SubstituteBindings->handle(Object(Illuminate/Http/Request), Object(Closure))
-#13 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(64): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#14 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Auth/Middleware/Authenticate->handle(Object(Illuminate/Http/Request), Object(Closure))
-#15 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(64): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#16 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Auth/Middleware/Authenticate->handle(Object(Illuminate/Http/Request), Object(Closure), 'sanctum')
-#17 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#18 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate/Session/Middleware/StartSession->handleStatefulRequest(Object(Illuminate/Http/Request), Object(Illuminate/Session/Store), Object(Closure))
-#19 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Session/Middleware/StartSession->handle(Object(Illuminate/Http/Request), Object(Closure))
-#20 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#21 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Cookie/Middleware/EncryptCookies->handle(Object(Illuminate/Http/Request), Object(Closure))
-#22 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#23 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate/Pipeline/Pipeline->then(Object(Closure))
-#24 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate/Routing/Router->runRouteWithinStack(Object(Illuminate/Routing/Route), Object(Illuminate/Http/Request))
-#25 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate/Routing/Router->runRoute(Object(Illuminate/Http/Request), Object(Illuminate/Routing/Route))
-#26 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate/Routing/Router->dispatchToRoute(Object(Illuminate/Http/Request))
-#27 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate/Routing/Router->dispatch(Object(Illuminate/Http/Request))
-#28 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate/Foundation/Http/Kernel->Illuminate/Foundation/Http/{closure}(Object(Illuminate/Http/Request))
-#29 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#30 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
-#31 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull->handle(Object(Illuminate/Http/Request), Object(Closure))
-#32 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#33 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
-#34 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/TrimStrings->handle(Object(Illuminate/Http/Request), Object(Closure))
-#35 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#36 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Http/Middleware/ValidatePostSize->handle(Object(Illuminate/Http/Request), Object(Closure))
-#37 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#38 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance->handle(Object(Illuminate/Http/Request), Object(Closure))
-#39 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#40 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Http/Middleware/HandleCors->handle(Object(Illuminate/Http/Request), Object(Closure))
-#41 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#42 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Http/Middleware/TrustProxies->handle(Object(Illuminate/Http/Request), Object(Closure))
-#43 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#44 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks->handle(Object(Illuminate/Http/Request), Object(Closure))
-#45 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#46 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate/Pipeline/Pipeline->then(Object(Closure))
-#47 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate/Foundation/Http/Kernel->sendRequestThroughRouter(Object(Illuminate/Http/Request))
-#48 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
-#49 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/public/index.php(17): Illuminate/Foundation/Application->handleRequest(Object(Illuminate/Http/Request))
-#50 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('C://Users//ICN//De...')
-#51 {main}
-"} 
-[2026-04-27 13:32:30] local.INFO: EnsureRole middleware check {"user_id":1,"user_roles":["super_admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 13:32:30] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 13:32:30] local.INFO: Checking role {"role":"super_admin","has_role":true} 
-[2026-04-27 13:32:30] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 13:32:30] local.ERROR: Call to undefined method App\Models\User::hasPermission() {"userId":1,"exception":"[object] (BadMethodCallException(code: 0): Call to undefined method App\\Models\\User::hasPermission() at C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php:67)
-[stacktrace]
-#0 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(36): Illuminate/Database/Eloquent/Model::throwBadMethodCallException('hasPermission')
-#1 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2372): Illuminate/Database/Eloquent/Model->forwardCallTo(Object(Illuminate/Database/Eloquent/Builder), 'hasPermission', Array)
-#2 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/app/Models/User.php(140): Illuminate/Database/Eloquent/Model->__call('hasPermission', Array)
-#3 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/app/Http/Controllers/Api/WarehouseController.php(31): App/Models/User->hasPermission('view-warehouses')
-#4 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(47): App/Http/Controllers/Api/WarehouseController->index()
-#5 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php(266): Illuminate/Routing/ControllerDispatcher->dispatch(Object(Illuminate/Routing/Route), Object(App/Http/Controllers/Api/WarehouseController), 'index')
-#6 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php(212): Illuminate/Routing/Route->runController()
-#7 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(808): Illuminate/Routing/Route->run()
-#8 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate/Routing/Router->Illuminate/Routing/{closure}(Object(Illuminate/Http/Request))
-#9 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/app/Http/Middleware/EnsureRole.php(61): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#10 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): App/Http/Middleware/EnsureRole->handle(Object(Illuminate/Http/Request), Object(Closure), 'admin', 'super_admin')
-#11 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(51): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#12 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Routing/Middleware/SubstituteBindings->handle(Object(Illuminate/Http/Request), Object(Closure))
-#13 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(64): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#14 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Auth/Middleware/Authenticate->handle(Object(Illuminate/Http/Request), Object(Closure))
-#15 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(64): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#16 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Auth/Middleware/Authenticate->handle(Object(Illuminate/Http/Request), Object(Closure), 'sanctum')
-#17 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#18 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate/Session/Middleware/StartSession->handleStatefulRequest(Object(Illuminate/Http/Request), Object(Illuminate/Session/Store), Object(Closure))
-#19 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Session/Middleware/StartSession->handle(Object(Illuminate/Http/Request), Object(Closure))
-#20 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#21 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Cookie/Middleware/EncryptCookies->handle(Object(Illuminate/Http/Request), Object(Closure))
-#22 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#23 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(807): Illuminate/Pipeline/Pipeline->then(Object(Closure))
-#24 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(786): Illuminate/Routing/Router->runRouteWithinStack(Object(Illuminate/Routing/Route), Object(Illuminate/Http/Request))
-#25 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(750): Illuminate/Routing/Router->runRoute(Object(Illuminate/Http/Request), Object(Illuminate/Routing/Route))
-#26 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Routing/Router.php(739): Illuminate/Routing/Router->dispatchToRoute(Object(Illuminate/Http/Request))
-#27 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(201): Illuminate/Routing/Router->dispatch(Object(Illuminate/Http/Request))
-#28 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(170): Illuminate/Foundation/Http/Kernel->Illuminate/Foundation/Http/{closure}(Object(Illuminate/Http/Request))
-#29 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#30 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
-#31 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull->handle(Object(Illuminate/Http/Request), Object(Closure))
-#32 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#33 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
-#34 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/TrimStrings->handle(Object(Illuminate/Http/Request), Object(Closure))
-#35 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#36 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Http/Middleware/ValidatePostSize->handle(Object(Illuminate/Http/Request), Object(Closure))
-#37 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#38 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance->handle(Object(Illuminate/Http/Request), Object(Closure))
-#39 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(62): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#40 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Http/Middleware/HandleCors->handle(Object(Illuminate/Http/Request), Object(Closure))
-#41 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#42 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Http/Middleware/TrustProxies->handle(Object(Illuminate/Http/Request), Object(Closure))
-#43 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#44 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(209): Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks->handle(Object(Illuminate/Http/Request), Object(Closure))
-#45 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(127): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
-#46 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate/Pipeline/Pipeline->then(Object(Closure))
-#47 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(145): Illuminate/Foundation/Http/Kernel->sendRequestThroughRouter(Object(Illuminate/Http/Request))
-#48 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1220): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
-#49 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/public/index.php(17): Illuminate/Foundation/Application->handleRequest(Object(Illuminate/Http/Request))
-#50 C:/Users/ICN/Desktop/Arabic-Inventory-System/laravel-backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('C://Users//ICN//De...')
-#51 {main}
-"} 
-[2026-04-27 14:11:46] local.INFO: Activity logged {"action":"تسجيل خروج","detail":"","username":"system","admin_id":null} 
-[2026-04-27 14:11:52] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 14:11:53] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 14:11:53] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:11:53] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:11:53] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:11:53] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:11:53] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:11:55] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:11:55] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:11:55] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:11:57] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:11:57] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:11:57] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:45:29] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:45:29] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:45:29] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:45:29] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:45:29] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:45:29] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:45:29] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:45:29] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:45:30] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:45:30] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:45:30] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:45:30] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:45:30] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:45:32] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 14:45:32] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 14:45:32] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:45:32] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:45:32] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:45:32] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:45:32] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:45:33] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:45:33] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:45:33] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:45:35] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:45:35] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:45:35] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:47:12] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:47:12] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:47:12] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:47:12] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:47:12] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:47:12] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:47:12] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:47:12] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:47:13] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:47:13] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:47:13] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:47:13] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:47:13] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:47:16] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 14:47:16] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 14:47:16] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:47:16] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:47:16] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:47:16] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:47:16] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:47:17] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:47:17] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:47:17] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:47:20] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:47:20] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:47:20] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:47:34] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:47:34] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:47:34] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:47:34] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:47:34] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:47:34] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:47:34] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:47:34] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:47:35] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:47:35] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:47:35] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:47:35] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:47:35] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:47:38] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 14:47:38] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 14:47:38] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 14:47:38] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 14:47:38] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 14:47:38] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 14:47:38] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 14:47:39] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:47:39] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:47:39] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 14:47:41] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 14:47:41] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 14:47:41] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:01:05] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:01:05] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:01:05] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:01:05] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:01:05] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:01:05] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:01:05] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:01:05] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:01:06] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:01:06] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:01:06] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:01:06] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:01:06] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:01:09] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:01:09] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 15:01:09] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:01:09] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:01:09] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:01:09] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:01:09] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:01:10] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:01:10] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:01:10] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:01:12] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:01:12] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:01:12] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:02:43] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:02:43] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:02:43] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:02:45] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:02:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:02:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:03:20] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:03:20] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:03:20] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:05:05] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:05:05] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:05:05] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:05:47] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:05:47] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:05:47] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:05:47] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:05:47] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:05:47] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:05:47] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:05:47] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:05:47] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:05:59] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:05:59] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:05:59] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:06:48] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:06:48] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:06:48] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:06:48] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:06:48] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:06:49] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:06:49] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:06:49] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:06:50] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:06:50] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:06:50] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:06:50] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:06:50] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:07:22] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:07:23] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 15:07:23] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:07:23] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:07:23] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:07:23] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:07:23] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:07:24] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:07:24] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:07:24] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:07:25] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:07:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:07:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:07:25] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:07:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:07:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:07:30] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:07:30] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:07:30] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:07:41] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:07:41] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:07:41] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:38] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:08:38] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:08:38] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:08:38] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:08:38] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:08:38] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:08:38] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:08:38] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:08:38] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:08:38] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:08:39] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:08:39] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:39] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:41] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:08:41] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 15:08:41] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:08:41] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:08:41] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:08:41] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:08:41] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:08:42] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:08:42] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:42] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:44] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:08:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:44] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:08:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:50] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:08:50] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:08:50] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:08:50] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:08:50] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:08:51] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:08:51] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:51] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:52] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:08:52] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:08:52] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:08:52] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:08:52] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:08:54] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:08:55] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 15:08:55] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:08:55] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:08:55] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:08:55] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:08:55] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:08:56] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:08:56] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:56] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:58] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:08:58] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:58] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:08:59] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:08:59] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:08:59] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:09:25] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:09:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:09:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:10:23] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:10:23] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:10:23] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:10:42] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:10:42] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:10:42] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:12:04] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:12:04] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:12:04] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:12:04] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:12:04] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:12:04] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:12:05] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:12:05] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:12:05] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:13:45] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:13:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:13:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:13:45] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:13:45] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:13:45] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:13:45] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:13:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:13:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:15:34] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:15:34] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:15:34] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:15:34] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:15:34] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:15:34] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:15:35] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:15:35] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:15:35] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:24:24] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:24:24] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:24:24] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:24:25] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:24:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:24:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:24:25] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:24:25] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:24:25] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:24:25] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:24:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:24:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:31:15] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:31:15] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:31:15] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:31:18] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:31:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:31:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:31:18] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:31:18] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:31:18] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:31:18] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:31:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:31:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:32:31] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:32:31] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:32:31] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:32:31] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:32:31] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:32:31] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:32:31] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:32:31] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:32:31] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:32:32] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:32:32] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:32:32] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:32:37] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/logs","request_method":"GET"} 
-[2026-04-27 15:32:37] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:32:37] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:13] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:36:13] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:13] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:13] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:36:13] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:36:13] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:36:14] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:36:14] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:14] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:30] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:36:30] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:30] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:30] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:36:30] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:36:30] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:36:31] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:36:31] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:31] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:40] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:36:40] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:40] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:40] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:36:40] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:36:40] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:36:40] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:36:40] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:40] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:44] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:36:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:36:44] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:36:44] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:36:44] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:36:45] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:36:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:36:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:28] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:37:28] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 15:37:28] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:37:28] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:37:28] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:37:28] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:37:28] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:37:29] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:37:29] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:37:29] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:31] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:37:31] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:37:31] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:31] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:37:31] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:37:31] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:37:32] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:37:32] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:37:32] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:32] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:37:32] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:37:32] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:34] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:37:34] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:37:34] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:34] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:37:34] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:37:34] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:37:34] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-04-27 15:37:34] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:37:34] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:37:42] local.INFO: Activity logged {"action":"تسجيل خروج","detail":"","username":"system","admin_id":null} 
-[2026-04-27 15:37:47] local.INFO: Subscription check passed {"user_id":4,"username":"jamel","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:37:47] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"jamel","admin_id":null} 
-[2026-04-27 15:37:47] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:37:47] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:37:47] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 15:37:47] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:37:47] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:37:48] local.INFO: EnsureRole middleware check {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:37:48] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 15:37:48] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-04-27 15:37:48] local.INFO: Role check result {"has_required_role":false} 
-[2026-04-27 15:37:48] local.ERROR: Access denied - insufficient permissions {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"]} 
-[2026-04-27 15:37:50] local.INFO: EnsureRole middleware check {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:37:50] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 15:37:50] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-04-27 15:37:50] local.INFO: Role check result {"has_required_role":false} 
-[2026-04-27 15:37:50] local.ERROR: Access denied - insufficient permissions {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"]} 
-[2026-04-27 15:38:09] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/4","request_method":"PATCH"} 
-[2026-04-27 15:38:09] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:38:09] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:38:10] local.INFO: User updated successfully {"user_id":4,"patch_data":{"username":"jamel","password":"$2y$12$7/Vkxq0ppLQ6bs1QIJOKL.oKv7bIZYgw.UuxS224LHj2jdFOkqVQy"},"updated_fields":["username","password"]} 
-[2026-04-27 15:38:10] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"jamel","username":"ahmad","admin_id":3} 
-[2026-04-27 15:38:10] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:38:10] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:38:10] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 15:38:10] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:38:11] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-04-27 15:38:11] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:38:11] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:38:11] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":true,"direct_permissions_count":0} 
-[2026-04-27 15:38:11] local.INFO: Processing role: user {"permissions_loaded":true,"permissions_count":9} 
-[2026-04-27 15:38:11] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:39:19] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:39:19] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:39:19] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 15:39:19] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:39:19] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:39:19] local.INFO: EnsureRole middleware check {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:39:19] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 15:39:19] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-04-27 15:39:19] local.INFO: Role check result {"has_required_role":false} 
-[2026-04-27 15:39:19] local.ERROR: Access denied - insufficient permissions {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"]} 
-[2026-04-27 15:39:20] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:39:20] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:39:20] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 15:39:20] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:39:20] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:39:31] local.INFO: Subscription check passed {"user_id":4,"username":"jamel","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 15:39:31] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"jamel","admin_id":null} 
-[2026-04-27 15:39:31] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:39:31] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:39:31] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 15:39:31] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:39:31] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 15:39:32] local.INFO: EnsureRole middleware check {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:39:32] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 15:39:32] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-04-27 15:39:32] local.INFO: Role check result {"has_required_role":false} 
-[2026-04-27 15:39:32] local.ERROR: Access denied - insufficient permissions {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"]} 
-[2026-04-27 15:39:34] local.INFO: EnsureRole middleware check {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:39:34] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 15:39:34] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-04-27 15:39:34] local.INFO: Role check result {"has_required_role":false} 
-[2026-04-27 15:39:34] local.ERROR: Access denied - insufficient permissions {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"]} 
-[2026-04-27 15:56:05] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:56:05] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:56:05] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:56:05] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:56:05] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 15:56:06] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 15:56:06] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 15:56:06] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 15:56:06] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 15:56:06] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 15:56:06] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 15:56:06] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 15:56:06] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 16:02:19] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
-[2026-04-27 16:02:19] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
-[2026-04-27 16:02:19] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:02:19] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:02:19] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 16:02:19] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:02:19] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 16:02:19] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 16:02:19] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 16:02:19] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 16:02:21] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 16:02:21] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 16:02:21] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 16:03:51] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:03:51] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:03:51] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 16:03:51] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:03:51] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 16:03:51] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:03:51] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:03:51] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 16:03:51] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:03:51] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 16:03:52] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 16:03:52] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 16:03:52] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 16:03:52] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:03:52] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:03:52] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 16:03:52] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:03:52] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 16:03:52] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:03:52] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:03:52] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 16:03:52] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:03:52] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 16:03:54] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:03:54] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:03:54] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
-[2026-04-27 16:03:54] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:03:54] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
-[2026-04-27 16:03:54] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 16:03:54] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-04-27 16:03:54] local.INFO: Role check result {"has_required_role":true} 
-[2026-04-27 16:03:55] local.INFO: UserResource Debug for user 4 {"roles_count":1,"roles":["user"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
-[2026-04-27 16:03:55] local.INFO: Processing role: user {"permissions_loaded":false,"permissions_count":"not loaded"} 
-[2026-04-27 16:03:55] local.INFO: Force loaded permissions for role: user {"permissions_count":9,"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"]} 
-[2026-04-27 16:03:55] local.INFO: Force loaded direct permissions for user: 4 {"permissions_count":0,"permissions":[]} 
-[2026-04-27 16:03:55] local.INFO: Final permissions for user 4 {"permissions":["create-products","edit-products","view-products","create-movements","view-movements","create-invoices","view-invoices","view-warehouses","view-dashboard"],"count":9} 
-[2026-04-27 16:03:55] local.INFO: EnsureRole middleware check {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-04-27 16:03:55] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-04-27 16:03:55] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-04-27 16:03:55] local.INFO: Role check result {"has_required_role":false} 
-[2026-04-27 16:03:55] local.ERROR: Access denied - insufficient permissions {"user_id":4,"user_roles":["user"],"required_roles":["admin","super_admin"]} 
+[2026-04-28 14:52:37] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","user"],"request_path":"api/products/bulk","request_method":"POST"} 
+[2026-04-28 14:52:37] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:52:37] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:52:41] local.INFO: Activity logged {"action":"استيراد منتجات","detail":"تم إضافة 1000 وتحديث 0","username":"ahmad","admin_id":3} 
+[2026-04-28 14:56:04] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:04] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:04] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:04] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:04] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:05] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:05] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:05] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:56:06] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:06] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:06] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:06] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:06] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:17] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 14:56:17] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 14:56:17] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:17] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:17] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:17] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:17] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:18] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:18] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:18] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:56:26] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:26] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:26] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:26] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:26] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:27] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:27] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:27] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:56:28] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:28] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:28] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:28] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:28] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:30] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 14:56:31] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 14:56:31] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:31] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:31] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:31] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:31] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:31] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:31] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:31] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:56:33] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:33] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:33] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:56:43] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:43] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:43] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:43] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:43] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:44] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:44] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:44] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:56:45] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:45] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:45] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:45] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:45] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:54] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 14:56:54] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 14:56:54] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:56:54] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:56:54] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:56:54] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:56:54] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:56:55] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:56:55] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:56:55] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:57:43] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:57:43] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:57:43] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:57:43] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:57:43] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:57:43] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:57:43] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:57:43] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:57:44] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:57:44] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:57:44] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:57:44] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:57:44] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:57:45] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 14:57:46] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 14:57:46] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:57:46] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:57:46] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:57:46] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:57:46] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:57:46] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:57:46] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:57:46] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:57:47] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:57:47] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:57:47] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:58:24] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:58:24] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:58:24] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:58:24] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:58:24] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:58:25] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:58:25] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:58:25] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:58:26] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:58:26] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:58:26] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:58:26] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:58:26] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:58:42] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 14:58:43] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 14:58:43] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 14:58:43] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 14:58:43] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 14:58:43] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 14:58:43] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 14:58:43] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:58:43] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:58:43] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 14:58:45] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 14:58:45] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 14:58:45] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 15:15:47] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","user"],"request_path":"api/movements","request_method":"POST"} 
+[2026-04-28 15:15:48] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 15:15:48] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 15:15:48] local.INFO: Activity logged {"action":"وارد","detail":"100 × جميل","username":"ahmad","admin_id":3} 
+[2026-04-28 15:20:10] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 15:20:10] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 15:20:10] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 15:26:47] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 15:26:47] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 15:26:47] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 15:27:16] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 15:27:16] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 15:27:16] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:13:48] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:13:48] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:13:48] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:13:51] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 16:13:51] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 16:13:51] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 16:13:51] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 16:13:51] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 16:13:51] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:13:51] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:13:51] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:13:53] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 16:13:53] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 16:13:53] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 16:13:53] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 16:13:53] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 16:14:49] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 16:14:50] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 16:14:50] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 16:14:50] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 16:14:50] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 16:14:50] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 16:14:50] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 16:14:50] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:14:50] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:14:50] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:14:51] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:14:51] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:14:51] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:14:51] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:14:51] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:14:51] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:14:52] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:14:52] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:14:52] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:15:48] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:15:48] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:15:48] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:17:09] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:17:09] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:17:09] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:18:22] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:18:22] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:18:22] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:19:09] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:19:09] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:19:09] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:46:03] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 16:46:03] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 16:46:03] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 16:46:03] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 16:46:03] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 16:46:03] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:46:03] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:46:03] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:46:05] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 16:46:05] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 16:46:05] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 16:46:05] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 16:46:05] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 16:46:17] local.INFO: Subscription check passed {"user_id":3,"username":"ahmad","subscription_id":1,"subscription_end_date":"2026-05-08 00:00:00"} 
+[2026-04-28 16:46:18] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"ahmad","admin_id":null} 
+[2026-04-28 16:46:18] local.INFO: UserResource Debug for user 3 {"roles_count":1,"roles":["admin"],"permissions_relation_loaded":false,"direct_permissions_count":"not loaded"} 
+[2026-04-28 16:46:18] local.INFO: Processing role: admin {"permissions_loaded":false,"permissions_count":"not loaded"} 
+[2026-04-28 16:46:18] local.INFO: Force loaded permissions for role: admin {"permissions_count":26,"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"]} 
+[2026-04-28 16:46:18] local.INFO: Force loaded direct permissions for user: 3 {"permissions_count":0,"permissions":[]} 
+[2026-04-28 16:46:18] local.INFO: Final permissions for user 3 {"permissions":["create-users","edit-users","delete-users","view-users","create-products","edit-products","delete-products","view-products","create-movements","edit-movements","delete-movements","view-movements","create-invoices","edit-invoices","delete-invoices","view-invoices","create-warehouses","edit-warehouses","delete-warehouses","view-warehouses","view-reports","export-reports","manage-settings","view-logs","clear-logs","view-dashboard"],"count":26} 
+[2026-04-28 16:46:18] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:46:18] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:46:18] local.INFO: Role check result {"has_required_role":true} 
+[2026-04-28 16:46:19] local.INFO: EnsureRole middleware check {"user_id":3,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-04-28 16:46:19] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-04-28 16:46:19] local.INFO: Role check result {"has_required_role":true} 

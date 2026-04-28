@@ -11,7 +11,6 @@ use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Services\ActivityLogger;
-use App\Services\RecordLimiter;
 use App\Services\WarehouseScope;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,7 +21,6 @@ class ProductController extends Controller
 {
     public function __construct(
         private readonly WarehouseScope $scope,
-        private readonly RecordLimiter $limiter,
         private readonly ActivityLogger $logger,
     ) {}
 
@@ -33,7 +31,7 @@ class ProductController extends Controller
             ->forWarehouse($warehouseId)
             ->search($request->string('q')->toString() ?: null)
             ->orderBy('name')
-            ->get();
+            ->paginate($request->integer('perPage', 15));
 
         return ProductResource::collection($products);
     }
@@ -50,7 +48,6 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request): ProductResource
     {
-        $this->limiter->ensureRoom();
         $data = $request->validated();
         $warehouseId = $this->scope->effective($request->user(), $data['warehouseId'] ?? null)
             ?? abort(422, 'المخزن مطلوب');
@@ -107,7 +104,6 @@ class ProductController extends Controller
         $data = $request->validated();
         $warehouseId = $this->scope->effective($request->user(), $data['warehouseId'] ?? null)
             ?? abort(422, 'المخزن مطلوب');
-        $this->limiter->ensureRoom(count($data['items']));
 
         $created = 0;
         $updated = 0;
