@@ -106,7 +106,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::patch('settings/company', [SettingsController::class, 'updateCompanySettings']);
         Route::get('settings/all', [SettingsController::class, 'getAllSettings']);
 
-        Route::patch('settings', [SettingController::class, 'update']);
+        Route::match(['patch', 'put'], 'settings', [SettingController::class, 'update']);
 
         Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin,super_admin');
         Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');

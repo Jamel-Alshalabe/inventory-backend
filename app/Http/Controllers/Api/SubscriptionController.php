@@ -50,6 +50,28 @@ class SubscriptionController extends Controller
             ], 422);
         }
 
+        // 1. Check if user is an admin
+        $user = User::find($request->user_id);
+        if ($user->role !== 'admin') {
+            return response()->json([
+                'message' => 'خطأ في التحقق',
+                'errors' => ['user_id' => ['يمكن إضافة اشتراكات لمدراء النظام (Admins) فقط.']]
+            ], 422);
+        }
+
+        // 2. Check for existing active subscription
+        $activeSubscription = UserSubscription::where('user_id', $request->user_id)
+            ->where('is_active', true)
+            ->where('end_date', '>', now())
+            ->first();
+
+        if ($activeSubscription) {
+            return response()->json([
+                'message' => 'خطأ في التحقق',
+                'errors' => ['user_id' => ['هذا المستخدم لديه اشتراك فعال بالفعل ينتهي في ' . $activeSubscription->end_date]]
+            ], 422);
+        }
+
         try {
             $subscription = UserSubscription::create([
                 'user_id' => $request->user_id,

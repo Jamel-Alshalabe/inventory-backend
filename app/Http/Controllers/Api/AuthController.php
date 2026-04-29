@@ -23,7 +23,10 @@ class AuthController extends Controller
     {
         $data = $request->validated();
         /** @var User|null $user */
-        $user = User::query()->with('roles')->where('username', $data['username'])->first();
+        $user = User::query()
+            ->with(['roles.permissions', 'permissions', 'assignedWarehouse'])
+            ->where('username', $data['username'])
+            ->first();
 
         if (! $user || ! Hash::check($data['password'], $user->password)) {
             return response()->json(['error' => 'بيانات الدخول غير صحيحة'], 401);
@@ -40,7 +43,12 @@ class AuthController extends Controller
 
     public function me(Request $request): UserResource
     {
-        return new UserResource($request->user());
+        $user = $request->user();
+        if ($user) {
+            $user->loadMissing(['roles.permissions', 'permissions', 'assignedWarehouse']);
+        }
+
+        return new UserResource($user);
     }
 
     public function logout(Request $request): JsonResponse

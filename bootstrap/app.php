@@ -55,12 +55,15 @@ return Application::configure(basePath: dirname(__DIR__))
         });
     })
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->statefulApi();
+        
         $middleware->alias([
             'role' => EnsureRole::class,
             'subscription.check' => SubscriptionCheck::class,
         ]);
 
         $middleware->api(prepend: [
+            \Illuminate\Http\Middleware\HandleCors::class,
             \Illuminate\Cookie\Middleware\EncryptCookies::class,
             \Illuminate\Session\Middleware\StartSession::class,
         ]);
