@@ -52,7 +52,7 @@ class SubscriptionController extends Controller
 
         // 1. Check if user is an admin
         $user = User::find($request->user_id);
-        if ($user->role !== 'admin') {
+        if (!$user->hasRole('admin')) {
             return response()->json([
                 'message' => 'خطأ في التحقق',
                 'errors' => ['user_id' => ['يمكن إضافة اشتراكات لمدراء النظام (Admins) فقط.']]

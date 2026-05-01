@@ -14,17 +14,7 @@ class LaratrustSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
-        // Clear existing roles and permissions
-        DB::table('permission_role')->truncate();
-        DB::table('permission_user')->truncate();
-        DB::table('role_user')->truncate();
-        Role::truncate();
-        Permission::truncate();
-        
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
+      
         // Create permissions
         $permissions = [
             // Users Management
@@ -106,6 +96,7 @@ class LaratrustSeeder extends Seeder
             'display_name' => 'مدير النظام الرئيسي',
             'description' => 'صلاحيات كاملة على النظام',
         ]);
+
         $adminRole = Role::create([
             'name' => 'admin',
             'display_name' => 'مدير النظام',
@@ -118,8 +109,6 @@ class LaratrustSeeder extends Seeder
             'description' => 'موظف بصلاحيات محدودة',
         ]);
 
-       
-
         $editorRole = Role::create([
             'name' => 'editor',
             'display_name' => 'محرر',
@@ -128,68 +117,20 @@ class LaratrustSeeder extends Seeder
 
         // Assign permissions to roles
         $adminRolePermissions = Permission::whereNotIn('name', [
-            'create-subscriptions',
-            'edit-subscriptions',
-            'delete-subscriptions',
             'view-subscriptions',
         ])->get();
+
         // Admin - All permissions (Company Owner)
         $adminRole->syncPermissions($adminRolePermissions);
 
         // Super Admin - Limited permissions (Platform Owner)
         $superAdminPermissions = Permission::whereIn('name', [
-            'create-users',
-            'edit-users',
-            'delete-users',
             'view-users',
-            'create-subscriptions',
-            'edit-subscriptions',
-            'delete-subscriptions',
             'view-subscriptions',
             'manage-settings',
         ])->get();
+
         $superAdminRole->syncPermissions($superAdminPermissions);
-
-     
-
-        // User - Basic operations
-        $userPermissions = Permission::whereIn('name', [
-            'view-dashboard',
-            'view-products',
-            'create-products',
-            'edit-products',
-            'view-movements',
-            'create-movements',
-            'view-invoices',
-            'create-invoices',
-            'view-warehouses',
-        ])->get();
-
-        $userRole->syncPermissions($userPermissions);
-
-        // Editor - Extended permissions
-        $editorPermissions = Permission::whereIn('name', [
-            'view-dashboard',
-            'view-products',
-            'create-products',
-            'edit-products',
-            'delete-products',
-            'view-movements',
-            'create-movements',
-            'edit-movements',
-            'view-invoices',
-            'create-invoices',
-            'edit-invoices',
-            'view-warehouses',
-            'view-reports',
-            'export-reports',
-        ])->get();
-        
-        $editorRole->syncPermissions($editorPermissions);
-
-      
-        
-
       
     }
 }

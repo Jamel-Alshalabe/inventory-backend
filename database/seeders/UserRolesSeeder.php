@@ -13,9 +13,7 @@ class UserRolesSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create dedicated user accounts for each role
         
-        // Super Admin user
         $superAdmin = User::firstOrCreate(
             ['username' => 'superadmin'],
             [
@@ -23,21 +21,6 @@ class UserRolesSeeder extends Seeder
             ]
         );
         $superAdmin->syncRoles(['super_admin']);
-        $this->command->info('✅ Super Admin user created: username "superadmin", password "Pass@123"');
-        
-        // Admin user
-        $admin = User::firstOrCreate(
-            ['username' => 'admin'],
-            [
-                'password' => bcrypt('Pass@123'),
-            ]
-        );
-        $admin->syncRoles(['admin']);
-        $this->command->info('✅ Admin user created: username "admin", password "Pass@123"');
-
-       
-
-       
         
     }
 }
