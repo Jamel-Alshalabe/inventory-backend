@@ -26,7 +26,11 @@ class InvoiceController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $warehouseId = $this->scope->effective($request->user(), $request->integer('warehouseId') ?: null);
-        $rows = Invoice::query()->forWarehouse($warehouseId)->orderByDesc('created_at')->get();
+        $rows = Invoice::query()
+            ->forWarehouse($warehouseId)
+            ->search($request->query('q'))
+            ->orderByDesc('created_at')
+            ->get();
         return InvoiceResource::collection($rows);
     }
 

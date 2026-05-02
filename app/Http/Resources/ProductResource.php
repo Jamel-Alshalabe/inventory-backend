@@ -19,6 +19,7 @@ class ProductResource extends JsonResource
             'buyPrice' => $this->buy_price,
             'sellPrice' => $this->sell_price,
             'quantity' => $this->quantity,
+            'lowStockThreshold' => $this->low_stock_threshold,
             'warehouseId' => $this->warehouse_id,
             'stockValue' => $this->quantity * $this->sell_price,
             'createdAt' => $this->created_at?->toIso8601String(),

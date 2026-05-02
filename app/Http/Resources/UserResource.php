@@ -12,26 +12,25 @@ class UserResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        // Get all permissions from user's roles and direct permissions
-        $allPermissions = collect();
-
-        foreach ($this->resource->roles ?? [] as $role) {
-            $allPermissions = $allPermissions->merge($role->permissions ?? []);
-        }
-
-        $allPermissions = $allPermissions->merge($this->resource->permissions ?? []);
-
-        $finalPermissions = $allPermissions->pluck('name')->unique()->values();
+        // Get all permissions (both direct and through roles)
+        $allPermissions = $this->resource->allPermissions()->pluck('name')->unique()->values()->toArray();
         
         return [
             'id' => $this->id,
             'username' => $this->username,
-            'role' => $this->roles->first()?->name ?? null, // Use Laratrust roles
-            'permissions' => $finalPermissions, // Get all unique permissions
+            'email' => $this->email,
+            'role' => $this->roles->first()?->name ?? null, 
+            'permissions' => $allPermissions,
             'assignedWarehouseId' => $this->assigned_warehouse_id,
             'assignedWarehouseName' => $this->assignedWarehouse?->name,
-            'max_warehouses' => $this->max_warehouses,
+            'maxWarehouses' => $this->max_warehouses,
+            'createdById' => $this->created_by_id,
             'createdAt' => $this->created_at?->toIso8601String(),
+            'companyName' => $this->company_name,
+            'companyPhone' => $this->company_phone,
+            'phone2' => $this->phone2,
+            'companyAddress' => $this->company_address,
+            'companyCurrency' => $this->company_currency,
         ];
     }
 }

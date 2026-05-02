@@ -8,6 +8,7 @@ use App\Enums\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -16,6 +17,7 @@ use Laratrust\Traits\HasRolesAndPermissions;
 /**
  * @property int $id
  * @property int|null $admin_id
+ * @property int|null $created_by_id
  * @property string $username
  * @property string $password
  * @property Role $role
@@ -33,12 +35,15 @@ class User extends Authenticatable
 
     protected $fillable = [
         'admin_id',
+        'created_by_id',
         'username',
+        'email',
         'password',
         'assigned_warehouse_id',
         'max_warehouses',
         'company_name',
         'company_phone',
+        'phone2',
         'company_address',
         'company_currency',
     ];
@@ -65,6 +70,16 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'admin_id');
     }
 
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    public function createdUsers(): HasMany
+    {
+        return $this->hasMany(User::class, 'created_by_id');
+    }
+
     public function assignedWarehouse(): BelongsTo
     {
         return $this->belongsTo(Warehouse::class, 'assigned_warehouse_id');
@@ -87,13 +102,13 @@ class User extends Authenticatable
 
     public function canCreateMoreWarehouses(): bool
     {
-        $currentWarehouses = Warehouse::where('created_by', $this->id)->count();
+        $currentWarehouses = Warehouse::where('admin_id', $this->id)->count();
         return $currentWarehouses < $this->max_warehouses;
     }
 
     public function getRemainingWarehouses(): int
     {
-        $currentWarehouses = Warehouse::where('created_by', $this->id)->count();
+        $currentWarehouses = Warehouse::where('admin_id', $this->id)->count();
         return max(0, $this->max_warehouses - $currentWarehouses);
     }
 
@@ -127,17 +142,18 @@ class User extends Authenticatable
 
     public function canManageUsers(): bool
     {
-        return $this->isAdmin() && $this->hasPermission('manage-users');
+        return $this->isAdmin() && $this->isAbleTo('manage-users');
     }
 
     public function canManageSettings(): bool
     {
-        return $this->isAdmin() && $this->hasPermission('manage-settings');
+        return $this->isAdmin() && $this->isAbleTo('manage-settings');
     }
 
     public function hasPermission(string $permission): bool
     {
-        return $this->hasRole('admin') || parent::hasPermission($permission);
+        // Don't override Laratrust logic for individual permission checks if we want to see direct permissions
+        return $this->isAbleTo($permission);
     }
 
     public function canEditUsername(): bool
@@ -179,16 +195,27 @@ class User extends Authenticatable
         if ($userRole === 'admin') {
             return [
                 'username',
+                'email',
                 'password',
                 'max_warehouses',
                 'company_name',
                 'company_phone',
+                'phone2',
                 'company_address',
                 'company_currency'
             ];
         }
         
         // Other roles (User, Editor) - can only edit their own info
-        return ['username', 'password'];
+        return ['username', 'email', 'password'];
+    }
+
+    public function scopeSearch(Builder $query, $search): Builder
+    {
+        if (empty($search)) {
+            return $query;
+        }
+
+        return $query->where('username', 'like', "%{$search}%");
     }
 }

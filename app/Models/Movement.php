@@ -53,4 +53,16 @@ class Movement extends Model
     {
         return $warehouseId ? $q->where('warehouse_id', $warehouseId) : $q;
     }
+
+    public function scopeSearch(Builder $query, $search): Builder
+    {
+        if (empty($search)) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($search) {
+            $q->where('product_name', 'like', "%{$search}%")
+              ->orWhere('product_code', 'like', "%{$search}%");
+        });
+    }
 }

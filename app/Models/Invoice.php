@@ -48,4 +48,16 @@ class Invoice extends Model
     {
         return $warehouseId ? $q->where('warehouse_id', $warehouseId) : $q;
     }
+
+    public function scopeSearch(Builder $query, $search): Builder
+    {
+        if (empty($search)) {
+            return $query;
+        }
+
+        return $query->where(function ($q) use ($search) {
+            $q->where('invoice_number', 'like', "%{$search}%")
+              ->orWhere('customer_name', 'like', "%{$search}%");
+        });
+    }
 }

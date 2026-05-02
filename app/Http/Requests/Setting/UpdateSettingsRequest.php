@@ -18,6 +18,8 @@ class UpdateSettingsRequest extends FormRequest
         return [
             'companyName' => ['sometimes', 'string', 'max:191'],
             'companyPhone' => ['sometimes', 'string', 'max:64'],
+            'companyPhone2' => ['sometimes', 'string', 'max:64', 'nullable'],
+            'companyEmail' => ['sometimes', 'email', 'max:191', 'nullable'],
             'companyAddress' => ['sometimes', 'string', 'max:255'],
             'currency' => ['sometimes', 'string', 'max:16'],
         ];

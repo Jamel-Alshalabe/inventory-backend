@@ -14,80 +14,74 @@ class LaratrustSeeder extends Seeder
      */
     public function run(): void
     {
-      
-        // Create permissions
-        $permissions = [
-            // Users Management
-            [
-                'name' => 'view-users',
-                'display_name' => 'إنشاء المستخدمين',
-                'description' => 'القدرة على إنشاء مستخدمين جدد',
-            ],
-        
-            [
-                'name' => 'view-subscriptions',
-                'display_name' => 'عرض الاشتراكات',
-                'description' => 'القدرة على عرض قائمة الاشتراكات',
-            ],
+        // Clear existing data to avoid duplicates
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('permission_role')->truncate();
+        DB::table('permission_user')->truncate();
+        DB::table('role_user')->truncate();
+        DB::table('roles')->truncate();
+        DB::table('permissions')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-           
-            [
-                'name' => 'view-products',
-                'display_name' => 'عرض المنتجات',
-                'description' => 'القدرة على عرض قائمة المنتجات',
+        // Define full permission set
+        $permissionGroups = [
+            'users' => [
+                'view-users' => ['عرض المستخدمين', 'القدرة على عرض قائمة المستخدمين'],
+                'create-user' => ['إنشاء مستخدم', 'القدرة على إنشاء مستخدمين جدد'],
+                'edit-user' => ['تعديل مستخدم', 'القدرة على تعديل بيانات المستخدمين'],
+                'delete-user' => ['حذف مستخدم', 'القدرة على حذف المستخدمين'],
             ],
-
-            [
-                'name' => 'view-movements',
-                'display_name' => 'عرض حركات المخزون',
-                'description' => 'القدرة على عرض حركات المخزون',
+            'subscriptions' => [
+                'view-subscriptions' => ['عرض الاشتراكات', 'القدرة على عرض قائمة الاشتراكات'],
+                'manage-subscriptions' => ['إدارة الاشتراكات', 'القدرة على تعديل الاشتراكات'],
             ],
-
-            [
-                'name' => 'view-invoices',
-                'display_name' => 'عرض الفواتير',
-                'description' => 'القدرة على عرض قائمة الفواتير',
+            'products' => [
+                'view-products' => ['عرض المنتجات', 'القدرة على عرض قائمة المنتجات'],
+                'create-product' => ['إضافة منتج', 'القدرة على إضافة منتجات جديدة'],
+                'edit-product' => ['تعديل منتج', 'القدرة على تعديل بيانات المنتجات'],
+                'delete-product' => ['حذف منتج', 'القدرة على حذف المنتجات'],
+                'import-products' => ['استيراد منتجات', 'القدرة على استيراد المنتجات من ملفات إكسيل'],
             ],
-
-            [
-                'name' => 'view-warehouses',
-                'display_name' => 'عرض المستودعات',
-                'description' => 'القدرة على عرض قائمة المستودعات',
+            'warehouses' => [
+                'view-warehouses' => ['عرض المخازن', 'القدرة على عرض قائمة المخازن'],
+                'create-warehouse' => ['إضافة مخزن', 'القدرة على إضافة مخازن جديدة'],
+                'edit-warehouse' => ['تعديل مخزن', 'القدرة على تعديل بيانات المخازن'],
+                'delete-warehouse' => ['حذف مخزن', 'القدرة على حذف المخازن'],
             ],
-
-            // Reports
-            [
-                'name' => 'view-reports',
-                'display_name' => 'عرض التقارير',
-                'description' => 'القدرة على عرض التقارير المالية والمخزنية',
+            'movements' => [
+                'view-movements' => ['عرض حركات المخزون', 'القدرة على عرض حركات المخزون'],
+                'create-movement' => ['إضافة حركة', 'القدرة على إضافة حركات مخزون جديدة'],
             ],
-           
-
-            // Settings
-            [
-                'name' => 'manage-settings',
-                'display_name' => 'إدارة الإعدادات',
-                'description' => 'القدرة على تعديل إعدادات النظام',
+            'invoices' => [
+                'view-invoices' => ['عرض الفواتير', 'القدرة على عرض قائمة الفواتير'],
+                'create-invoice' => ['إنشاء فاتورة', 'القدرة على إنشاء فواتير جديدة'],
+                'edit-invoice' => ['تعديل فاتورة', 'القدرة على تعديل الفواتير'],
+                'delete-invoice' => ['حذف فاتورة', 'القدرة على حذف الفواتير'],
+                'print-invoice' => ['طباعة فاتورة', 'القدرة على طباعة الفواتير'],
             ],
-
-            // Logs
-            [
-                'name' => 'view-logs',
-                'display_name' => 'عرض السجلات',
-                'description' => 'القدرة على عرض سجلات النشاط',
+            'reports' => [
+                'view-reports' => ['عرض التقارير', 'القدرة على عرض التقارير المالية والمخزنية'],
             ],
-        
-
-            // Dashboard
-            [
-                'name' => 'view-dashboard',
-                'display_name' => 'عرض لوحة التحكم',
-                'description' => 'القدرة على عرض لوحة تحكم الإحصائيات',
+            'settings' => [
+                'manage-settings' => ['إدارة الإعدادات', 'القدرة على تعديل إعدادات النظام'],
+            ],
+            'logs' => [
+                'view-logs' => ['عرض السجلات', 'القدرة على عرض سجلات النشاط'],
+            ],
+            'dashboard' => [
+                'view-dashboard' => ['عرض لوحة التحكم', 'القدرة على عرض لوحة تحكم الإحصائيات'],
             ],
         ];
 
-        foreach ($permissions as $permission) {
-            Permission::create($permission);
+        $allCreatedPermissions = [];
+        foreach ($permissionGroups as $group => $perms) {
+            foreach ($perms as $name => $details) {
+                $allCreatedPermissions[$name] = Permission::create([
+                    'name' => $name,
+                    'display_name' => $details[0],
+                    'description' => $details[1],
+                ]);
+            }
         }
 
         // Create roles
@@ -100,37 +94,38 @@ class LaratrustSeeder extends Seeder
         $adminRole = Role::create([
             'name' => 'admin',
             'display_name' => 'مدير النظام',
-            'description' => 'صلاحيات كاملة على النظام',
+            'description' => 'صلاحيات كاملة على مستوى المؤسسة',
+        ]);
+
+        $auditorRole = Role::create([
+            'name' => 'auditor',
+            'display_name' => 'مراجع',
+            'description' => 'صلاحيات العرض فقط لجميع أجزاء النظام',
         ]);
 
         $userRole = Role::create([
             'name' => 'user',
             'display_name' => 'موظف',
-            'description' => 'موظف بصلاحيات محدودة',
+            'description' => 'موظف بصلاحيات محددة',
         ]);
 
-        $editorRole = Role::create([
-            'name' => 'editor',
-            'display_name' => 'محرر',
-            'description' => 'محرر بصلاحيات متوسطة',
-        ]);
-
-        // Assign permissions to roles
-        $adminRolePermissions = Permission::whereNotIn('name', [
-            'view-subscriptions',
-        ])->get();
-
-        // Admin - All permissions (Company Owner)
-        $adminRole->syncPermissions($adminRolePermissions);
-
-        // Super Admin - Limited permissions (Platform Owner)
+     
+        
+        // Super Admin - All platform management permissions
         $superAdminPermissions = Permission::whereIn('name', [
-            'view-users',
-            'view-subscriptions',
-            'manage-settings',
+            'view-users', 'create-user', 'edit-user', 'delete-user',
+            'view-subscriptions', 'manage-subscriptions',
+            'manage-settings'
         ])->get();
-
         $superAdminRole->syncPermissions($superAdminPermissions);
-      
+
+        // Admin - Everything except subscriptions management (usually managed by platform owner)
+        $adminPermissions = Permission::whereNotIn('name', [
+            'view-subscriptions', 'manage-subscriptions'
+        ])->get();
+        $adminRole->syncPermissions($adminPermissions);
+
+        
+        
     }
 }

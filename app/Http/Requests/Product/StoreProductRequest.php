@@ -21,6 +21,7 @@ class StoreProductRequest extends FormRequest
             'buyPrice' => ['required', 'numeric', 'min:0'],
             'sellPrice' => ['required', 'numeric', 'min:0'],
             'quantity' => ['required', 'integer', 'min:0'],
+            'lowStockThreshold' => ['nullable', 'integer', 'min:0'],
             'warehouseId' => ['nullable', 'integer', 'exists:warehouses,id'],
         ];
     }

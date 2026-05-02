@@ -10,9 +10,11 @@ use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Warehouse;
 use App\Models\Permission;
 use App\Services\ActivityLogger;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -23,23 +25,31 @@ class UserController extends Controller
     {
     }
 
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
         $authUser = Auth::user();
         
-        $query = User::with(['admin', 'assignedWarehouse', 'roles.permissions', 'permissions'])
+        $searchTerm = $request->query('q');
+        
+        $query = User::with(['admin', 'creator', 'assignedWarehouse', 'roles.permissions', 'permissions'])
+        ->search($searchTerm)
         ->whereHas('roles', function($query) {
             $query->where('name', '!=', 'super_admin');
         });
         
-        
-        // If not super admin, only show employees of the current admin
-        if (!$authUser->hasRole('super_admin')) {
-            $query->where('admin_id', $authUser->id);
-           
+        // If super admin, only show users they created
+        if ($authUser->hasRole('super_admin')) {
+            $query->where('created_by_id', $authUser->id);
         } 
+        // If regular admin, only show their employees
+        elseif ($authUser->hasRole('admin')) {
+            $query->where('admin_id', $authUser->id);
+        } else {
+            // Other roles shouldn't see anyone or only themselves, but here we enforce admin/superadmin logic
+            $query->where('id', $authUser->id);
+        }
         
-        $users = $query->orderBy('username')->get();
+        $users = $query->orderByDesc('created_at')->get();
         
         return UserResource::collection($users);
     }
@@ -65,24 +75,35 @@ class UserController extends Controller
         
         $user = User::create([
             'admin_id' => $data['admin_id'] ?? null,
+            'created_by_id' => $admin->id,
             'username' => $data['username'],
             'password' => $data['password'],
             'assigned_warehouse_id' => $data['assignedWarehouseId'] ?? null,
             'max_warehouses' => $admin->hasRole('super_admin') ? ($data['max_warehouses'] ?? 1) : 1,
-            'company_name' => $data['company_name'] ?? null,
-            'company_phone' => $data['company_phone'] ?? null,
-            'company_address' => $data['company_address'] ?? null,
-            'company_currency' => $data['company_currency'] ?? 'ج.م',
         ]);
         
-        // Assign role using Laratrust
-        $user->addRole($data['role']);
+        $roleName = $data['role'];
+        $role = Role::where('name', $roleName)->first();
+        
+        if ($role) {
+            $user->syncRoles([$role]);
+        }
+        
+        // Task 1: If the created user is an 'admin' (manager), create a main warehouse for them
+        if ($roleName === 'admin') {
+            Warehouse::create([
+                'name' => 'المخزن الرئيسي',
+                'admin_id' => $user->id,
+            ]);
+        }
         
         // Assign specific permissions
         if (isset($data['permissions']) && is_array($data['permissions'])) {
             $permissions = Permission::whereIn('name', $data['permissions'])->get();
-            $user->syncPermissions($permissions);
+            $user->syncPermissions($permissions->all()); // Pass array instead of collection
         }
+        
+        $user->load(['roles', 'permissions']); // Ensure permissions are loaded
         
         $this->logger->log('إضافة مستخدم', $user->username);
         return new UserResource($user->load(['admin', 'roles', 'permissions']));
@@ -93,14 +114,8 @@ class UserController extends Controller
         $authUser = Auth::user();
         $user = User::findOrFail($id);
         
-        // Debug logging
-       
-        
         // Check if user can update this user
         if (!$authUser->hasRole(['super_admin', 'admin']) && $user->admin_id !== $authUser->id) {
-            \Log::error('User update authorization failed', [
-                'reason' => 'User does not have required role and is not the admin of target user'
-            ]);
             return response()->json(['message' => 'Unauthorized'], 403);
         }
         
@@ -118,14 +133,14 @@ class UserController extends Controller
                     $patch['max_warehouses'] = $data[$field] !== null ? $data[$field] : 1;
                 } elseif ($field === 'password' && !empty($data[$field])) {
                     $patch[$field] = Hash::make($data[$field]);
+                } elseif ($field === 'phone2') {
+                    $patch['phone2'] = $data[$field];
                 } elseif ($data[$field] !== null) {
                     $patch[$field] = $data[$field];
                 }
             }
         }
         
-        // Note: Role is handled separately via relationship, not in patch
-
         // Don't allow changing admin_id unless super admin
         if (!$authUser->hasRole('super_admin')) {
             unset($patch['admin_id']);
@@ -133,24 +148,21 @@ class UserController extends Controller
         
         $user->fill($patch)->save();
         
-        \Log::info('User updated successfully', [
-            'user_id' => $id,
-            'patch_data' => $patch,
-            'updated_fields' => array_keys($patch)
-        ]);
-        
-        // Update role (only super admin can change roles)
-        if ($authUser->hasRole('super_admin') && isset($data['role'])) {
+        // Update role (super admin can change all, admin can only change their employees' roles)
+        if (isset($data['role'])) {
             $role = Role::where('name', $data['role'])->first();
             if ($role) {
-                $user->syncRoles([$role]);
+                // Security check for regular admin
+                if ($authUser->hasRole('super_admin') || !in_array($role->name, ['super_admin', 'admin'])) {
+                    $user->syncRoles([$role]);
+                }
             }
         }
         
-        // Update permissions (only super admin can change permissions)
-        if ($authUser->hasRole('super_admin') && isset($data['permissions']) && is_array($data['permissions'])) {
+        // Update permissions
+        if (isset($data['permissions']) && is_array($data['permissions'])) {
             $permissions = Permission::whereIn('name', $data['permissions'])->get();
-            $user->syncPermissions($permissions);
+            $user->syncPermissions($permissions->all()); // Pass array instead of collection
         }
         
         $this->logger->log('تعديل مستخدم', $user->username);
@@ -188,9 +200,9 @@ class UserController extends Controller
         
         // Filter roles based on auth user
         if (!$authUser->hasRole('super_admin')) {
-            // Regular admins can't create other admins
+            // Regular admins can create other admins (managers)
             $roles = $roles->filter(function ($role) {
-                return !in_array($role->name, ['super_admin', 'admin']);
+                return $role->name !== 'super_admin';
             });
         }
         
@@ -204,7 +216,30 @@ class UserController extends Controller
     {
         $permissions = Permission::all();
         
-        return response()->json(['permissions' => $permissions]);
+        // Group permissions by category
+        $grouped = [];
+        foreach ($permissions as $permission) {
+            $name = $permission->name;
+            $category = 'أخرى';
+            
+            if (str_contains($name, 'user')) $category = 'المستخدمين';
+            elseif (str_contains($name, 'product')) $category = 'المنتجات';
+            elseif (str_contains($name, 'warehouse')) $category = 'المخازن';
+            elseif (str_contains($name, 'invoice')) $category = 'الفواتير';
+            elseif (str_contains($name, 'movement')) $category = 'حركات المخزون';
+            elseif (str_contains($name, 'subscription')) $category = 'الاشتراكات';
+            elseif (str_contains($name, 'report')) $category = 'التقارير';
+            elseif (str_contains($name, 'setting')) $category = 'الإعدادات';
+            elseif (str_contains($name, 'log')) $category = 'السجلات';
+            elseif (str_contains($name, 'dashboard')) $category = 'لوحة التحكم';
+            
+            $grouped[$category][] = $permission;
+        }
+        
+        return response()->json([
+            'permissions' => $permissions,
+            'grouped' => $grouped
+        ]);
     }
 
     /**

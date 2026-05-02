@@ -21,6 +21,7 @@ class UpdateProductRequest extends FormRequest
             'buyPrice' => ['sometimes', 'numeric', 'min:0'],
             'sellPrice' => ['sometimes', 'numeric', 'min:0'],
             'quantity' => ['sometimes', 'integer', 'min:0'],
+            'lowStockThreshold' => ['sometimes', 'nullable', 'integer', 'min:0'],
         ];
     }
 }

@@ -80,10 +80,12 @@ class SettingsController extends Controller
         }
 
         $settings = [
-            'company_name' => $user->company_name,
-            'company_phone' => $user->company_phone,
-            'company_address' => $user->company_address,
-            'company_currency' => $user->getCompanyCurrency(),
+            'companyName' => $user->company_name,
+            'companyPhone' => $user->company_phone,
+            'companyPhone2' => $user->phone2,
+            'companyEmail' => $user->email,
+            'companyAddress' => $user->company_address,
+            'currency' => $user->getCompanyCurrency(),
             'invoice_number_prefix' => $user->getInvoiceNumberPrefix(),
             'current_invoice_number' => $user->getCurrentInvoiceNumber(),
         ];
@@ -105,6 +107,8 @@ class SettingsController extends Controller
         $request->validate([
             'company_name' => 'string|nullable|max:255',
             'company_phone' => 'string|nullable|max:20',
+            'company_phone2' => 'string|nullable|max:20',
+            'company_email' => 'email|nullable|max:255',
             'company_address' => 'string|nullable|max:500',
             'company_currency' => 'string|nullable|max:10',
             'invoice_number_prefix' => 'string|nullable|max:10',
@@ -114,6 +118,8 @@ class SettingsController extends Controller
         $user->update([
             'company_name' => $request->input('company_name'),
             'company_phone' => $request->input('company_phone'),
+            'phone2' => $request->input('company_phone2'),
+            'email' => $request->input('company_email'),
             'company_address' => $request->input('company_address'),
             'company_currency' => $request->input('company_currency'),
             'invoice_number_prefix' => $request->input('invoice_number_prefix'),
@@ -125,10 +131,12 @@ class SettingsController extends Controller
         return response()->json([
             'message' => 'Company settings updated successfully',
             'company_settings' => [
-                'company_name' => $user->company_name,
-                'company_phone' => $user->company_phone,
-                'company_address' => $user->company_address,
-                'company_currency' => $user->getCompanyCurrency(),
+                'companyName' => $user->company_name,
+                'companyPhone' => $user->company_phone,
+                'companyPhone2' => $user->phone2,
+                'companyEmail' => $user->email,
+                'companyAddress' => $user->company_address,
+                'currency' => $user->getCompanyCurrency(),
                 'invoice_number_prefix' => $user->getInvoiceNumberPrefix(),
                 'current_invoice_number' => $user->getCurrentInvoiceNumber(),
             ],
@@ -150,10 +158,12 @@ class SettingsController extends Controller
         // Add company settings if user is admin
         if ($user->hasRole('admin') || $user->hasRole('super_admin')) {
             $settings['company_settings'] = [
-                'company_name' => $user->company_name,
-                'company_phone' => $user->company_phone,
-                'company_address' => $user->company_address,
-                'company_currency' => $user->getCompanyCurrency(),
+                'companyName' => $user->company_name,
+                'companyPhone' => $user->company_phone,
+                'companyPhone2' => $user->phone2,
+                'companyEmail' => $user->email,
+                'companyAddress' => $user->company_address,
+                'currency' => $user->getCompanyCurrency(),
                 'invoice_number_prefix' => $user->getInvoiceNumberPrefix(),
                 'current_invoice_number' => $user->getCurrentInvoiceNumber(),
             ];

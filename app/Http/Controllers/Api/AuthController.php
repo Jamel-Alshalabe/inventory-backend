@@ -24,9 +24,14 @@ class AuthController extends Controller
         $data = $request->validated();
         /** @var User|null $user */
         $user = User::query()
-            ->with(['roles.permissions', 'permissions', 'assignedWarehouse'])
+            ->with(['roles', 'assignedWarehouse'])
             ->where('username', $data['username'])
             ->first();
+
+        if ($user) {
+            // Laratrust's allPermissions() ensures we get both direct and role-based permissions
+            $user->setRelation('permissions', $user->allPermissions());
+        }
 
         if (! $user || ! Hash::check($data['password'], $user->password)) {
             return response()->json(['error' => 'بيانات الدخول غير صحيحة'], 401);
@@ -45,7 +50,9 @@ class AuthController extends Controller
     {
         $user = $request->user();
         if ($user) {
-            $user->loadMissing(['roles.permissions', 'permissions', 'assignedWarehouse']);
+            $user->loadMissing(['roles', 'assignedWarehouse']);
+            // Laratrust's allPermissions() ensures we get both direct and role-based permissions
+            $user->setRelation('permissions', $user->allPermissions());
         }
 
         return new UserResource($user);

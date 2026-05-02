@@ -30,6 +30,7 @@ class MovementController extends Controller
         $warehouseId = $this->scope->effective($request->user(), $request->integer('warehouseId') ?: null);
         $movements = Movement::query()
             ->forWarehouse($warehouseId)
+            ->search($request->query('q'))
             ->orderByDesc('created_at')
             ->limit($request->integer('limit') ?: 500)
             ->get();
@@ -61,33 +62,70 @@ class MovementController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
-        $warehouseId = $this->scope->effective($request->user(), null);
+        $effectiveWarehouseId = $this->scope->effective($request->user(), null);
         
         // Find the original movement
-        $movement = Movement::query()->where('id', $id);
-        if ($warehouseId) {
-            $movement->where('warehouse_id', $warehouseId);
+        $q = Movement::query()->where('id', $id);
+        if ($effectiveWarehouseId) {
+            $q->where('warehouse_id', $effectiveWarehouseId);
         }
-        $originalMovement = $movement->firstOrFail();
+        $originalMovement = $q->firstOrFail();
+
+        // Use the original movement's warehouse_id for all product operations
+        $warehouseId = $originalMovement->warehouse_id;
 
         // Use transaction to ensure data consistency
         return DB::transaction(function () use ($originalMovement, $data, $warehouseId) {
-            // Reverse the original movement
-            $this->inventory->reverse($originalMovement);
+            // 1. Reverse the original movement (return stock)
+            $product = \App\Models\Product::query()
+                ->where('code', $originalMovement->product_code)
+                ->where('warehouse_id', $warehouseId)
+                ->lockForUpdate()
+                ->first();
+
+            if ($product) {
+                $delta = $originalMovement->type === MovementType::In ? -$originalMovement->quantity : $originalMovement->quantity;
+                $product->quantity += $delta;
+                $product->save();
+            }
             
-            // Create new movement with updated data
-            $newMovement = $this->inventory->record(
-                MovementType::from($data['type']),
-                $data['productCode'],
-                (int) $data['quantity'],
-                (float) $data['price'],
-                $warehouseId,
-            );
+            // 2. Apply new movement data to product stock
+            $newProduct = \App\Models\Product::query()
+                ->where('code', $data['productCode'])
+                ->where('warehouse_id', $warehouseId)
+                ->lockForUpdate()
+                ->first();
+
+            if (!$newProduct) {
+                throw new \RuntimeException('المنتج غير موجود في هذا المخزن', 404);
+            }
+
+            $type = MovementType::from($data['type']);
+            if ($type === MovementType::Out && $newProduct->quantity < (int)$data['quantity']) {
+                throw new \App\Exceptions\InsufficientStockException($newProduct->name);
+            }
+
+            $newProduct->quantity = ($type === MovementType::In)
+                ? $newProduct->quantity + (int)$data['quantity']
+                : $newProduct->quantity - (int)$data['quantity'];
+            $newProduct->save();
+
+            // 3. Update the movement record instead of creating new one if possible, 
+            // but the original controller logic creates a new one. Let's update the existing one.
+            $originalMovement->update([
+                'type' => $type,
+                'product_code' => $newProduct->code,
+                'product_name' => $newProduct->name,
+                'quantity' => (int)$data['quantity'],
+                'price' => (float)$data['price'],
+                'total' => (int)$data['quantity'] * (float)$data['price'],
+                'warehouse_id' => $warehouseId,
+            ]);
             
             // Log the update
             $this->logger->log('تعديل حركة', "تحديث حركة المنتج {$data['productCode']}");
             
-            return new MovementResource($newMovement);
+            return new MovementResource($originalMovement);
         });
     }
 

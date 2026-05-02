@@ -17,16 +17,22 @@ class DashboardService
      */
     public function summary(?int $warehouseId): array
     {
-        $threshold = (int) config('inventory.low_stock_threshold', 5);
+        $defaultThreshold = (int) config('inventory.low_stock_threshold', 5);
 
-        $products = Product::forWarehouse($warehouseId)->get(['quantity', 'sell_price']);
+        $products = Product::forWarehouse($warehouseId)->get(['id', 'name', 'code', 'quantity', 'sell_price', 'low_stock_threshold']);
         $totalProducts = $products->count();
         $totalQuantity = (int) $products->sum('quantity');
         $stockValue = (float) $products->reduce(
             fn (float $c, Product $p) => $c + ($p->quantity * $p->sell_price),
             0.0,
         );
-        $lowStock = $products->filter(fn (Product $p) => $p->quantity > 0 && $p->quantity <= $threshold)->count();
+        
+        // Calculate low stock per-product threshold (respecting individual product settings)
+        $lowStockProducts = $products->filter(function ($p) use ($defaultThreshold) {
+            $threshold = $p->low_stock_threshold ?? $defaultThreshold;
+            return $p->quantity > 0 && $p->quantity <= $threshold;
+        });
+        $lowStock = $lowStockProducts->count();
         $outOfStock = $products->filter(fn (Product $p) => $p->quantity === 0)->count();
 
         $today = Carbon::today();
@@ -84,6 +90,15 @@ class DashboardService
             ];
         }
 
+        // Format low stock products for response
+        $lowStockProductsList = $lowStockProducts->map(fn (Product $p) => [
+            'id' => $p->id,
+            'name' => $p->name,
+            'code' => $p->code,
+            'quantity' => $p->quantity,
+            'lowStockThreshold' => $p->low_stock_threshold ?? $defaultThreshold,
+        ])->values()->all();
+
         return [
             'totalProducts' => $totalProducts,
             'totalQuantity' => $totalQuantity,
@@ -97,6 +112,7 @@ class DashboardService
             'recentMovements' => $recentMovements,
             'topProducts' => $topProducts,
             'dailyMovements' => $dailyMovements,
+            'lowStockProducts' => $lowStockProductsList,
         ];
     }
 }

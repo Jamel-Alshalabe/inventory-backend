@@ -27,14 +27,18 @@ class UpdateUserRequest extends FormRequest
         $id = (int) $this->route('user');
         return [
             'username' => ['sometimes', 'string', 'min:3', 'max:64', Rule::unique('users', 'username')->ignore($id)],
+            'email' => ['sometimes', 'nullable', 'email', 'max:255', Rule::unique('users', 'email')->ignore($id)],
             'password' => ['sometimes', 'nullable', 'string', 'min:6', 'max:128'],
             'role' => ['sometimes', new Enum(Role::class)],
             'assignedWarehouseId' => ['sometimes', 'nullable', 'integer', 'exists:warehouses,id'],
             'maxWarehouses' => ['sometimes', 'integer', 'min:1', 'max:999'],
             'company_name' => ['sometimes', 'nullable', 'string', 'max:255'],
             'company_phone' => ['sometimes', 'nullable', 'string', 'max:20'],
+            'phone2' => ['sometimes', 'nullable', 'string', 'max:20'],
             'company_address' => ['sometimes', 'nullable', 'string', 'max:500'],
             'company_currency' => ['sometimes', 'nullable', 'string', 'max:10'],
+            'permissions' => ['sometimes', 'nullable', 'array'],
+            'permissions.*' => ['string', 'exists:permissions,name'],
         ];
     }
 }

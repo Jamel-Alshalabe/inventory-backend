@@ -16,6 +16,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProductController extends Controller
 {
@@ -27,10 +28,22 @@ class ProductController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $warehouseId = $this->scope->effective($request->user(), $request->integer('warehouseId') ?: null);
-        $products = Product::query()
+        $q = Product::query()
             ->forWarehouse($warehouseId)
-            ->search($request->string('q')->toString() ?: null)
-            ->orderBy('name')
+            ->search($request->string('q')->toString() ?: null);
+
+        $lowStockOnly = $request->boolean('lowStockOnly', false);
+        if ($lowStockOnly) {
+            $overrideThreshold = $request->integer('lowStockThreshold');
+            if ($overrideThreshold !== null) {
+                $q->where('quantity', '<=', $overrideThreshold);
+            } else {
+                // Use product-specific threshold if present, otherwise default 5
+                $q->whereRaw('quantity <= COALESCE(low_stock_threshold, 5)');
+            }
+        }
+
+        $products = $q->orderByDesc('created_at')
             ->paginate($request->integer('perPage', 15));
 
         return ProductResource::collection($products);
@@ -58,6 +71,7 @@ class ProductController extends Controller
             'buy_price' => $data['buyPrice'],
             'sell_price' => $data['sellPrice'],
             'quantity' => $data['quantity'],
+            'low_stock_threshold' => $data['lowStockThreshold'] ?? null,
             'warehouse_id' => $warehouseId,
         ]);
         $this->logger->log('إضافة منتج', $product->name);
@@ -77,6 +91,7 @@ class ProductController extends Controller
             ->mapWithKeys(fn ($v, string $k) => [match ($k) {
                 'buyPrice' => 'buy_price',
                 'sellPrice' => 'sell_price',
+                'lowStockThreshold' => 'low_stock_threshold',
                 default => $k,
             } => $v])
             ->all();
@@ -88,7 +103,15 @@ class ProductController extends Controller
 
     public function destroy(Request $request, int $id): JsonResponse
     {
-        $warehouseId = $this->scope->effective($request->user(), null);
+        $authUser = $request->user();
+        
+        // Task 2: Check password before deletion
+        $password = $request->input('password');
+        if (!$password || !Hash::check($password, $authUser->password)) {
+            return response()->json(['message' => 'كلمة المرور غير صحيحة'], 422);
+        }
+
+        $warehouseId = $this->scope->effective($authUser, null);
         $q = Product::query()->where('id', $id);
         if ($warehouseId) {
             $q->where('warehouse_id', $warehouseId);
@@ -119,6 +142,7 @@ class ProductController extends Controller
                     'buy_price' => $row['buyPrice'],
                     'sell_price' => $row['sellPrice'],
                     'quantity' => $row['quantity'],
+                    'low_stock_threshold' => $row['lowStockThreshold'] ?? null,
                     'warehouse_id' => $warehouseId,
                 ])->save();
                 $exists ? $updated++ : $created++;

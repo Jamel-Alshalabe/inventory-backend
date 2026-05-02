@@ -22,6 +22,7 @@ class BulkProductRequest extends FormRequest
             'items.*.buyPrice' => ['required', 'numeric', 'min:0'],
             'items.*.sellPrice' => ['required', 'numeric', 'min:0'],
             'items.*.quantity' => ['required', 'integer', 'min:0'],
+            'items.*.lowStockThreshold' => ['sometimes', 'nullable', 'integer', 'min:0'],
             'warehouseId' => ['nullable', 'integer', 'exists:warehouses,id'],
         ];
     }

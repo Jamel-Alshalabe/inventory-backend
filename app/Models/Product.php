@@ -28,6 +28,7 @@ class Product extends Model
         'buy_price',
         'sell_price',
         'quantity',
+        'low_stock_threshold',
         'warehouse_id',
     ];
 
@@ -37,6 +38,7 @@ class Product extends Model
             'buy_price' => 'float',
             'sell_price' => 'float',
             'quantity' => 'integer',
+            'low_stock_threshold' => 'integer',
             'warehouse_id' => 'integer',
         ];
     }
