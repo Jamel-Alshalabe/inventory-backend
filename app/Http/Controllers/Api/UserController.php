@@ -79,7 +79,7 @@ class UserController extends Controller
             'username' => $data['username'],
             'password' => $data['password'],
             'assigned_warehouse_id' => $data['assignedWarehouseId'] ?? null,
-            'max_warehouses' => $admin->hasRole('super_admin') ? ($data['max_warehouses'] ?? 1) : 1,
+            'max_warehouses' => $admin->hasRole('super_admin') ? ($data['maxWarehouses'] ?? 1) : 1,
         ]);
         
         $roleName = $data['role'];
@@ -106,7 +106,7 @@ class UserController extends Controller
         $user->load(['roles', 'permissions']); // Ensure permissions are loaded
         
         $this->logger->log('إضافة مستخدم', $user->username);
-        return new UserResource($user->load(['admin', 'roles', 'permissions']));
+        return new UserResource($user->load(['admin', 'roles', 'permissions', 'assignedWarehouse']));
     }
 
     public function update(UpdateUserRequest $request, int $id): UserResource
@@ -121,6 +121,14 @@ class UserController extends Controller
         
         $data = $request->validated();
         $editableFields = $user->getEditableFields();
+        
+        // Admins/super_admin can assign a warehouse (and set max warehouses) for any user role.
+        if ($authUser->hasRole(['super_admin', 'admin'])) {
+            $editableFields = array_values(array_unique(array_merge($editableFields, [
+                'assignedWarehouseId',
+                'maxWarehouses',
+            ])));
+        }
         
         // Filter data to only include editable fields for this user role
         $patch = [];
@@ -166,7 +174,7 @@ class UserController extends Controller
         }
         
         $this->logger->log('تعديل مستخدم', $user->username);
-        return new UserResource($user->load(['admin', 'roles', 'permissions']));
+        return new UserResource($user->load(['admin', 'roles', 'permissions', 'assignedWarehouse']));
     }
 
     public function destroy(int $id): JsonResponse

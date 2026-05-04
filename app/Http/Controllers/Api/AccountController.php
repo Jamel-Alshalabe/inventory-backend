@@ -61,12 +61,15 @@ class AccountController extends Controller
             unset($filteredData['newPassword']);
         }
         
-        // Update only the allowed fields
-        foreach ($filteredData as $field => $value) {
-            if ($field !== 'currentPassword') { // Don't update current password field
-                $user->$field = $value;
-            }
-        }
+        // Update profile fields with explicit mapping to handle different naming conventions
+        if (isset($data['username'])) $user->username = $data['username'];
+        if (isset($data['email'])) $user->email = $data['email'];
+        if (isset($data['phone2'])) $user->phone2 = $data['phone2'];
+        
+        if (isset($data['company_name'])) $user->company_name = $data['company_name'];
+        if (isset($data['company_phone'])) $user->company_phone = $data['company_phone'];
+        if (isset($data['company_address'])) $user->company_address = $data['company_address'];
+        if (isset($data['company_currency'])) $user->company_currency = $data['company_currency'];
         
         $user->save();
         $this->logger->log('تحديث الملف الشخصي');

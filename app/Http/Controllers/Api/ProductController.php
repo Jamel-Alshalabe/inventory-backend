@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -103,11 +105,19 @@ class ProductController extends Controller
 
     public function destroy(Request $request, int $id): JsonResponse
     {
+        /** @var User $authUser */
         $authUser = $request->user();
         
         // Task 2: Check password before deletion
         $password = $request->input('password');
-        if (!$password || !Hash::check($password, $authUser->password)) {
+        
+        if (empty($password) || !Hash::check((string)$password, $authUser->password)) {
+            Log::warning('فشل التحقق من كلمة المرور عند حذف المنتج', [
+                'user_id' => $authUser->id,
+                'username' => $authUser->username,
+                
+                'has_password' => !empty($password)
+            ]);
             return response()->json(['message' => 'كلمة المرور غير صحيحة'], 422);
         }
 

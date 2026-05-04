@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\AuthController;
@@ -10,8 +13,6 @@ use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\Api\MovementController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReportController;
-use App\Http\Controllers\Api\SettingController;
-use App\Http\Controllers\Api\SettingsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WarehouseController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Public
 |--------------------------------------------------------------------------
+|
 */
 Route::post('auth/login', [AuthController::class, 'login'])->middleware('subscription.check');
 
@@ -27,6 +29,7 @@ Route::post('auth/login', [AuthController::class, 'login'])->middleware('subscri
 |--------------------------------------------------------------------------
 | Authenticated (Sanctum bearer token)
 |--------------------------------------------------------------------------
+|
 */
 // Logout should work without authentication
 Route::post('auth/logout', [AuthController::class, 'logout']);
@@ -49,7 +52,10 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('movements', [MovementController::class, 'index']);
     Route::get('invoices', [InvoiceController::class, 'index']);
     Route::get('invoices/{id}', [InvoiceController::class, 'show'])->whereNumber('id');
-    Route::get('settings', [SettingController::class, 'index']);
+
+    // Warehouse list (needed for warehouse selector). Mutations remain admin/super_admin only.
+    Route::get('warehouses', [WarehouseController::class, 'index'])->middleware('role:admin,super_admin,user,auditor');
+    
     Route::prefix('reports')->controller(ReportController::class)->group(function (): void {
         Route::get('sales', 'sales');
         Route::get('stock', 'stock');
@@ -74,8 +80,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
     });
 
     // Admin and SuperAdmin only
-    Route::middleware(['auth', 'role:admin,super_admin'])->group(function (): void {
-        Route::get('warehouses', [WarehouseController::class, 'index']);
+    Route::middleware('role:admin,super_admin')->group(function (): void {
         Route::post('warehouses', [WarehouseController::class, 'store']);
         Route::patch('warehouses/{id}', [WarehouseController::class, 'update'])->whereNumber('id');
         Route::delete('warehouses/{id}', [WarehouseController::class, 'destroy'])->whereNumber('id');
@@ -98,27 +103,7 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::get('users/permissions', [UserController::class, 'getPermissions']);
         Route::patch('users/{user}/permissions', [UserController::class, 'updatePermissions'])->whereNumber('user');
 
-        // Settings routes
-        Route::get('settings/theme', [SettingsController::class, 'getThemeSettings']);
-        Route::patch('settings/theme', [SettingsController::class, 'updateThemeSettings']);
-        Route::post('settings/theme/reset', [SettingsController::class, 'resetThemeSettings']);
-        Route::get('settings/company', [SettingsController::class, 'getCompanySettings']);
-        Route::patch('settings/company', [SettingsController::class, 'updateCompanySettings']);
-        Route::get('settings/all', [SettingsController::class, 'getAllSettings']);
-
-        Route::match(['patch', 'put'], 'settings', [SettingController::class, 'update']);
-
         Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin,super_admin');
         Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');
-
-        // Test ActivityLogger
-        Route::get('test-activity-log', function () {
-            Log::info('Testing ActivityLogger from route');
-
-            $logger = app(\App\Services\ActivityLogger::class);
-            $logger->log('اختبار من route', 'هذا اختبار من route مباشر');
-
-            return response()->json(['message' => 'Activity log test completed']);
-        });
     });
 });

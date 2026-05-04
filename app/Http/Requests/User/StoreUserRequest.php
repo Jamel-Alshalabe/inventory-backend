@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
             'password' => ['required', 'string', 'min:6', 'max:128'],
             'role' => ['required', new Enum(Role::class)],
             'assignedWarehouseId' => ['nullable', 'integer', 'exists:warehouses,id'],
-            'max_warehouses' => ['nullable', 'integer', 'min:1', 'max:100'],
+            'maxWarehouses' => ['nullable', 'integer', 'min:1', 'max:100'],
             'permissions' => ['nullable', 'array'],
             'permissions.*' => ['string', 'exists:permissions,name'],
         ];

@@ -125,7 +125,7 @@ class User extends Authenticatable
 
     public function isLockedToWarehouse(): bool
     {
-        return $this->hasRole('user') && $this->assigned_warehouse_id !== null;
+        return ($this->hasRole('user') || $this->hasRole('auditor')) && $this->assigned_warehouse_id !== null;
     }
 
     public function getCompanyDisplayName(): string
@@ -197,7 +197,8 @@ class User extends Authenticatable
                 'username',
                 'email',
                 'password',
-                'max_warehouses',
+                'assignedWarehouseId',
+                'maxWarehouses',
                 'company_name',
                 'company_phone',
                 'phone2',
