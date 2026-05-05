@@ -81,19 +81,12 @@ Route::middleware('auth:sanctum')->group(function (): void {
     });
 
     // Admin and SuperAdmin only
-<<<<<<< Updated upstream
-    Route::middleware('role:admin,super_admin')->group(function (): void {
-        Route::post('warehouses', [WarehouseController::class, 'store']);
-        Route::patch('warehouses/{id}', [WarehouseController::class, 'update'])->whereNumber('id');
-        Route::delete('warehouses/{id}', [WarehouseController::class, 'destroy'])->whereNumber('id');
-=======
     Route::middleware(['auth', 'role:admin,super_admin'])->group(function (): void {
         Route::controller(WarehouseController::class)->group(function (): void {
             Route::get('warehouses',  'index');
             Route::post('warehouses',  'store');
             Route::patch('warehouses/{id}',  'update')->whereNumber('id');
             Route::delete('warehouses/{id}',  'destroy')->whereNumber('id');
->>>>>>> Stashed changes
 
         });
 
@@ -108,10 +101,6 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::controller(SubscriptionController::class)
             ->group(function (): void {
 
-<<<<<<< Updated upstream
-        Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin,super_admin');
-        Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');
-=======
                 Route::get('subscriptions', 'index');
                 Route::post('subscriptions', 'store');
                 Route::get('subscriptions/{subscription}', 'show')->whereNumber('subscription');
@@ -143,6 +132,5 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');
 
 
->>>>>>> Stashed changes
     });
 });
