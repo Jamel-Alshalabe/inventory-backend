@@ -47,6 +47,7 @@ class LaratrustSeeder extends Seeder
                 'create-warehouse' => ['إضافة مخزن', 'القدرة على إضافة مخازن جديدة'],
                 'edit-warehouse' => ['تعديل مخزن', 'القدرة على تعديل بيانات المخازن'],
                 'delete-warehouse' => ['حذف مخزن', 'القدرة على حذف المخازن'],
+                'export-warehouse' => ['تصدير مخزن', 'القدرة على تصدير بيانات المخازن'],
             ],
             'movements' => [
                 'view-movements' => ['عرض حركات المخزون', 'القدرة على عرض حركات المخزون'],

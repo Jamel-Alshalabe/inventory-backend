@@ -10,12 +10,18 @@ use App\Http\Resources\WarehouseResource;
 use App\Models\Product;
 use App\Models\Warehouse;
 use App\Models\User;
+use App\Models\Movement;
+use App\Models\Invoice;
+use App\Exports\WarehouseDataExport;
 use App\Services\ActivityLogger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class WarehouseController extends Controller
 {
@@ -23,14 +29,150 @@ class WarehouseController extends Controller
     {
     }
 
+    public function exportWarehouseData(int $id, Request $request): SymfonyResponse|JsonResponse
+    {
+        
+
+        $authUser = Auth::user();
+        
+        // 1. Check if user has the specific export permission
+        try {
+            $allowed = $authUser && ($authUser->hasRole('admin') || $authUser->isAbleTo('export-warehouse'));
+        } catch (\Throwable $e) {
+            Log::error('Export permission check crashed', [
+                'error' => $e->getMessage(),
+                'type' => get_class($e),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+            ]);
+            return response()->json([
+                'message' => 'حدث خطأ أثناء التحقق من صلاحيات التصدير',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+
+        if (!$allowed) {
+            return response()->json(['message' => 'ليس لديك صلاحية لتصدير بيانات المخزن'], 403);
+        }
+
+        try {
+            $warehouse = Warehouse::with(['admin'])->findOrFail($id);
+
+            // 2. Check authorization to access THIS specific warehouse
+            if (!$authUser->hasRole('admin') && $warehouse->admin_id !== $authUser->id && $authUser->admin_id !== $warehouse->admin_id) {
+                return response()->json(['message' => 'Unauthorized'], 403);
+            }
+
+            $type = $request->query('type', 'products');
+            $fileName = "مخزن_{$warehouse->name}_{$type}_" . now()->format('Y-m-d_H-i-s') . ".xlsx";
+
+            switch ($type) {
+                case 'products':
+                    $data = $warehouse->products()->get()->map(function ($p) {
+                        return [
+                            'ID' => $p->id,
+                            'Code' => $p->code,
+                            'Name' => $p->name,
+                            'Quantity' => $p->quantity,
+                            'Low Stock Threshold' => $p->low_stock_threshold,
+                            'Buy Price' => $p->buy_price,
+                            'Sell Price' => $p->sell_price,
+                            'Created At' => $p->created_at,
+                        ];
+                    });
+                    $headings = ['رقم المعرف', 'الكود', 'الاسم', 'الكمية', 'حد المخزون المنخفض', 'سعر الشراء', 'سعر البيع', 'تاريخ الإضافة'];
+                    $title = 'المنتجات';
+                    break;
+
+                case 'movements':
+                    $data = $warehouse->movements()->get()->map(function ($m) {
+                        return [
+                            'ID' => $m->id,
+                            'Type' => $m->type->value === 'in' ? 'وارد' : 'صادر',
+                            'Product Code' => $m->product_code,
+                            'Product Name' => $m->product_name,
+                            'Quantity' => $m->quantity,
+                            'Price' => $m->price,
+                            'Total' => $m->total,
+                            'Date' => $m->created_at,
+                        ];
+                    });
+                    $headings = ['رقم المعرف', 'النوع', 'كود المنتج', 'اسم المنتج', 'الكمية', 'السعر', 'الإجمالي', 'التاريخ'];
+                    $title = 'حركة المخزون';
+                    break;
+
+                case 'invoices':
+                    $data = $warehouse->invoices()->get()->map(function ($i) {
+                        return [
+                            'ID' => $i->id,
+                            'Invoice Number' => $i->invoice_number,
+                            'items_count' => $i->items()->count(),
+                            'Customer Name' => $i->customer_name,
+                            'Total' => $i->total,
+                            'Status' => $i->status,
+                            'Date' => $i->created_at,
+                        ];
+                    });
+                    $headings = ['رقم المعرف', 'رقم الفاتورة', 'عدد الأصناف', 'اسم العميل', 'الإجمالي', 'الحالة', 'التاريخ'];
+                    $title = 'الفواتير';
+                    break;
+
+                case 'users':
+                    $adminId = $authUser->hasRole('admin') ? $authUser->id : $authUser->admin_id;
+
+                    $data = User::with(['roles'])
+                        ->where(function ($query) use ($id, $adminId, $warehouse) {
+                            $query
+                                ->where(function ($q) use ($id, $adminId) {
+                                    $q->where('assigned_warehouse_id', $id);
+
+                                    if ($adminId) {
+                                        $q->where('admin_id', $adminId);
+                                    }
+                                })
+                                ->orWhere('id', $warehouse->admin_id);
+                        })
+                        ->get()
+                        ->map(function ($u) {
+                            return [
+                                'ID' => $u->id,
+                                'Username' => $u->username,
+                                'Email' => $u->email ? $u->email : 'فارغ',
+                                'Role' => $u->roles->first()?->display_name ?? $u->role,
+                                'Created At' => $u->created_at,
+                            ];
+                        });
+                    $headings = ['رقم المعرف', 'اسم المستخدم', 'البريد الإلكتروني', 'الدور', 'تاريخ الإنشاء'];
+                    $title = 'المستخدمين';
+                    break;
+
+                default:
+                    return response()->json(['message' => 'Invalid export type'], 400);
+            }
+
+            $this->logger->log('تصدير بيانات مخزن', "تصدير {$title} لمخزن {$warehouse->name}");
+
+            $export = new WarehouseDataExport($data, $headings, $title);
+            return Excel::download($export, $fileName);
+
+        } catch (\Throwable $e) {
+            Log::error('CRITICAL: Export failed', [
+                'error' => $e->getMessage(),
+                'type' => get_class($e),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return response()->json([
+                'message' => 'حدث خطأ داخلي أثناء تصدير الملف',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
     public function index(Request $request): AnonymousResourceCollection|JsonResponse
     {
         $authUser = Auth::user();
-        
-        // Temporarily bypass permission check to debug 500 error
-        // if (!$authUser->isAbleTo('view-warehouses')) {
-        //     return response()->json(['message' => 'ليس لديك صلاحية لعرض المخازن'], 403);
-        // }
         
         $query = Warehouse::with('admin');
         

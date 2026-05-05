@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WarehouseController;
 use App\Http\Controllers\Api\SubscriptionController;
+use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,9 +86,9 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::controller(WarehouseController::class)->group(function (): void {
             Route::get('warehouses',  'index');
             Route::post('warehouses',  'store');
+            Route::get('warehouses/{id}/export', 'exportWarehouseData')->whereNumber('id');
             Route::patch('warehouses/{id}',  'update')->whereNumber('id');
             Route::delete('warehouses/{id}',  'destroy')->whereNumber('id');
-
         });
 
         
@@ -109,21 +110,21 @@ Route::middleware('auth:sanctum')->group(function (): void {
                 Route::get('users/{user}/subscriptions', 'getUserSubscriptions')->whereNumber('user');
                 Route::get('subscriptions/active', 'getActiveSubscriptions');
                 Route::get('subscriptions/expired', 'getExpiredSubscriptions');
-                Route::get('users/permissions', 'getPermissions');
-                Route::patch('users/{user}/permissions', 'updatePermissions')->whereNumber('user');
+                Route::get('users/permissions', [UserController::class, 'getPermissions']);
+                Route::patch('users/{user}/permissions', [UserController::class, 'updatePermissions'])->whereNumber('user');
             });
         // Settings routes
-
         Route::controller(SettingsController::class)
             ->prefix('settings')
             ->group(function (): void {
-                Route::get('settings/theme', 'getThemeSettings');
-                Route::patch('settings/theme', 'updateThemeSettings');
-                Route::post('settings/theme/reset', 'resetThemeSettings');
-                Route::get('settings/company', 'getCompanySettings');
-                Route::patch('settings/company', 'updateCompanySettings');
-                Route::get('settings/all', 'getAllSettings');
-                Route::match(['patch', 'put'], 'settings', 'update');
+                Route::get('/', 'getAllSettings'); // Correctly handle GET /api/settings
+                Route::get('theme', 'getThemeSettings');
+                Route::patch('theme', 'updateThemeSettings');
+                Route::post('theme/reset', 'resetThemeSettings');
+                Route::get('company', 'getCompanySettings');
+                Route::patch('company', 'updateCompanySettings');
+                Route::get('all', 'getAllSettings');
+                Route::match(['patch', 'put'], '/', 'update');
             });
 
 

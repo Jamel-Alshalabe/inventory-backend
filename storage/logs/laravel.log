@@ -1,552 +1,121 @@
-[2026-05-03 22:19:55] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","user"],"request_path":"api/products/4","request_method":"DELETE"} 
-[2026-05-03 22:19:55] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:19:55] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:19:55] local.WARNING: فشل التحقق من كلمة المرور عند حذف المنتج {"user_id":14,"username":"new admin","has_password":false} 
-[2026-05-03 22:21:13] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","user"],"request_path":"api/products/4","request_method":"DELETE"} 
-[2026-05-03 22:21:13] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:21:13] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:21:14] local.INFO: Activity logged {"action":"حذف منتج","detail":"جميل","username":"new admin","admin_id":14} 
-[2026-05-03 22:23:17] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:23:17] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:23:17] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:23:43] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:23:43] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:23:43] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:23:45] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:23:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:23:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:23:46] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:23:46] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:23:46] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:25:41] local.INFO: Activity logged {"action":"تحديث الملف الشخصي","detail":"","username":"new admin","admin_id":14} 
-[2026-05-03 22:25:43] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:25:43] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:25:43] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:26:19] local.INFO: Activity logged {"action":"تحديث الملف الشخصي","detail":"","username":"new admin","admin_id":14} 
-[2026-05-03 22:26:21] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:26:21] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:26:21] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:27:38] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:27:38] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:27:38] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:27:40] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:27:40] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:27:40] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:27:41] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:27:41] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:27:41] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:28:25] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:28:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:28:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:28:28] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:28:28] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:28:28] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:28:29] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:28:29] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:28:29] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:29:31] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:29:31] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:29:31] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:29:34] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:29:34] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:29:34] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:29:36] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:29:36] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:29:36] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:30:06] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:30:06] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:30:06] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:30:30] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:30:30] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:30:30] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:30:32] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:30:32] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:30:32] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:30:33] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:30:33] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:30:33] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:32:15] local.INFO: Activity logged {"action":"تحديث الملف الشخصي","detail":"","username":"new admin","admin_id":14} 
-[2026-05-03 22:32:17] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:32:17] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:32:17] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:32:42] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:32:42] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:32:42] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:32:44] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:32:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:32:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:32:45] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:32:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:32:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:33:25] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:33:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:33:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:36:50] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:36:50] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:36:50] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:36:51] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:36:51] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:36:51] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:36:53] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:36:53] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:36:53] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:37:40] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:37:40] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:37:40] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:37:40] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:37:40] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:37:40] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:37:41] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:37:41] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:37:41] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:06] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:06] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:06] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:07] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:07] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:07] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:08] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:38:08] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:08] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:08] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:08] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:08] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:09] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:09] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:09] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:16] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:16] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:16] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:17] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:38:17] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:17] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:18] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:21] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:21] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:21] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:21] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:21] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:21] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:22] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:38:22] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:22] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:22] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:22] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:22] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:23] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:23] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:23] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:32] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:32] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:32] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:33] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:33] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:33] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:33] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:38:33] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:33] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:42] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:38:42] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:42] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:43] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:43] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:43] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:44] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:38:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:51] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"POST"} 
-[2026-05-03 22:38:51] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:51] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:38:51] local.INFO: Activity logged {"action":"إضافة مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:38:52] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:38:52] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:38:52] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:39:09] local.INFO: Subscription check passed {"user_id":15,"username":"test","subscription_id":4,"subscription_end_date":"2026-05-20 00:00:00"} 
-[2026-05-03 22:39:10] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"test","admin_id":null} 
-[2026-05-03 22:39:11] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:39:11] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:39:11] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:39:11] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:39:11] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:39:14] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:39:14] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:39:14] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:39:14] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:39:14] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:39:14] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:39:14] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:39:14] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:39:14] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:39:14] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:39:41] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:39:41] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:39:41] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:39:41] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:39:42] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:39:42] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:39:42] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:39:50] local.INFO: Activity logged {"action":"تسجيل خروج","detail":"","username":"system","admin_id":null} 
-[2026-05-03 22:40:05] local.INFO: Subscription check passed {"user_id":15,"username":"test","subscription_id":4,"subscription_end_date":"2026-05-20 00:00:00"} 
-[2026-05-03 22:40:05] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"test","admin_id":null} 
-[2026-05-03 22:40:06] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:40:06] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:40:06] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:40:06] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:40:06] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:40:08] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:40:08] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:40:08] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:40:08] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:40:08] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:40:09] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:40:09] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:40:09] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:40:09] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:40:09] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:40:47] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:40:47] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:40:47] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:40:47] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:40:49] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:40:49] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:40:49] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:17] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:41:17] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:17] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:18] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:41:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:18] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:41:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:19] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:41:19] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:19] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:19] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:41:19] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:19] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:44] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:41:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:41:44] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:41:45] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:41:45] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:41:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:42:22] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:42:22] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:42:22] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:42:23] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:42:23] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:42:23] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:42:25] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:42:25] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:42:25] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:42:37] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:42:37] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:42:37] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:42:37] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:42:38] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:42:38] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:42:38] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:44:18] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:44:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:44:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:44:18] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:44:20] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:44:20] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:44:20] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:45:37] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:45:37] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:45:37] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:45:37] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:45:39] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:45:39] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:45:39] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:46:02] local.INFO: Activity logged {"action":"تسجيل خروج","detail":"","username":"system","admin_id":null} 
-[2026-05-03 22:46:02] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:46:02] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:46:02] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:46:02] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:46:02] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:46:03] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:46:03] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:46:03] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:46:03] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:46:03] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:46:20] local.INFO: Subscription check passed {"user_id":15,"username":"test","subscription_id":4,"subscription_end_date":"2026-05-20 00:00:00"} 
-[2026-05-03 22:46:26] local.INFO: Subscription check passed {"user_id":15,"username":"test","subscription_id":4,"subscription_end_date":"2026-05-20 00:00:00"} 
-[2026-05-03 22:46:26] local.INFO: Activity logged {"action":"تسجيل دخول","detail":"","username":"test","admin_id":null} 
-[2026-05-03 22:46:28] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:46:28] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:46:28] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:46:28] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:46:28] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:46:39] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:46:39] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:46:39] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:46:39] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:46:39] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:46:41] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:46:41] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:46:41] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:46:41] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:46:41] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:47:57] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:47:57] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:47:57] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:47:59] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:47:59] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:47:59] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:48:00] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:48:00] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:48:00] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:48:34] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:48:34] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:48:34] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:48:34] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:48:34] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:48:35] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:48:35] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:48:35] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:48:35] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:48:35] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:48:54] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:48:54] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:48:54] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:48:54] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:48:54] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:17] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:17] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:17] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:17] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:17] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:17] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:49:17] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:49:17] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:49:18] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:18] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:18] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:18] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:18] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:18] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:49:18] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:49:18] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:49:19] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:19] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:49:19] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:49:43] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:43] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:43] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:43] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:43] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:44] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:44] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:44] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:44] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:44] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:45] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:45] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:45] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:45] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:45] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:45] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:45] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:45] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:45] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:45] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:46] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:46] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:46] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:46] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:46] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:47] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:47] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:47] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:47] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:47] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:49:48] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:49:48] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:49:48] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:49:48] local.INFO: Role check result {"has_required_role":false} 
-[2026-05-03 22:49:48] local.ERROR: Access denied - insufficient permissions {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin"]} 
-[2026-05-03 22:50:05] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:05] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:05] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:05] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:05] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:05] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:07] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:07] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:07] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:07] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:07] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:07] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:08] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:08] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:08] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:08] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:08] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:08] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:10] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:10] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:10] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:10] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:10] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:11] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:11] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:11] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:11] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:11] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:11] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:12] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:12] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:12] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:12] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:12] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:13] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:13] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:13] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:13] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:13] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:13] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:35] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","user"],"request_path":"api/products","request_method":"POST"} 
-[2026-05-03 22:50:35] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:50:35] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:35] local.INFO: Activity logged {"action":"إضافة منتج","detail":"Nihil tempora dolore","username":"new admin","admin_id":14} 
-[2026-05-03 22:50:45] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:45] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:45] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:45] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:45] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:45] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:46] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:50:46] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:50:46] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:48] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-03 22:50:48] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:50:48] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:49] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:49] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:50:49] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:50:49] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:50:49] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:50:49] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:50] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:50:50] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:50:50] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:54] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/15","request_method":"PATCH"} 
-[2026-05-03 22:50:54] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:50:54] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:50:55] local.INFO: Activity logged {"action":"تعديل مستخدم","detail":"test","username":"new admin","admin_id":14} 
-[2026-05-03 22:50:56] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-03 22:50:56] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-03 22:50:56] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:51:02] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:51:02] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:51:02] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:51:02] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:51:02] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:51:02] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:51:04] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:51:04] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:51:04] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:51:04] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:51:04] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:51:04] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-03 22:51:16] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-03 22:51:16] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-03 22:51:16] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-03 22:51:16] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-03 22:51:16] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-03 22:51:16] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:38] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-04 19:50:38] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:38] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:44] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-04 19:50:44] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:46] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:50:46] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:46] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:48] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-04 19:50:48] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:48] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:51] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:50:51] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:51] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:54] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-04 19:50:54] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:54] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:58] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:50:58] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:58] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:59] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-04 19:50:59] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:59] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:01] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
-[2026-05-04 19:51:01] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:51:01] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:50:58] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:50:58] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:50:58] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:06] local.INFO: EnsureRole middleware check {"user_id":14,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
-[2026-05-04 19:51:06] local.INFO: Checking role {"role":"admin","has_role":true} 
-[2026-05-04 19:51:06] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:38] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:38] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:38] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:38] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:38] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:38] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:40] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:40] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:40] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:40] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:40] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:40] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:42] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:42] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:42] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:42] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:42] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:42] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:43] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:43] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:43] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:43] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:43] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:44] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:44] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:44] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:44] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:44] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:44] local.INFO: Role check result {"has_required_role":true} 
-[2026-05-04 19:51:45] local.INFO: EnsureRole middleware check {"user_id":15,"user_roles":["auditor"],"required_roles":["admin","super_admin","user","auditor"],"request_path":"api/warehouses","request_method":"GET"} 
-[2026-05-04 19:51:45] local.INFO: Checking role {"role":"admin","has_role":false} 
-[2026-05-04 19:51:45] local.INFO: Checking role {"role":"super_admin","has_role":false} 
-[2026-05-04 19:51:45] local.INFO: Checking role {"role":"user","has_role":false} 
-[2026-05-04 19:51:45] local.INFO: Checking role {"role":"auditor","has_role":true} 
-[2026-05-04 19:51:45] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:43:51] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses/1/export","request_method":"GET"} 
+[2026-05-05 10:43:51] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:43:51] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:43:51] local.INFO: Export endpoint hit {"warehouse_id":1,"type":"products","auth_id":2} 
+[2026-05-05 10:43:51] local.INFO: Activity logged {"action":"تصدير بيانات مخزن","detail":"تصدير المنتجات لمخزن المخزن الرئيسي","username":"jamel","admin_id":2} 
+[2026-05-05 10:44:24] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses/1/export","request_method":"GET"} 
+[2026-05-05 10:44:24] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:44:24] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:44:24] local.INFO: Export endpoint hit {"warehouse_id":1,"type":"movements","auth_id":2} 
+[2026-05-05 10:44:24] local.INFO: Activity logged {"action":"تصدير بيانات مخزن","detail":"تصدير حركة المخزون لمخزن المخزن الرئيسي","username":"jamel","admin_id":2} 
+[2026-05-05 10:51:33] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
+[2026-05-05 10:51:33] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:33] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:34] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
+[2026-05-05 10:51:34] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:34] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:34] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-05-05 10:51:34] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:34] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:37] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-05-05 10:51:37] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:37] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:37] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-05-05 10:51:37] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:37] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:37] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-05-05 10:51:37] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:37] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:43] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses/1/export","request_method":"GET"} 
+[2026-05-05 10:51:43] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:51:43] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:51:43] local.ERROR: CRITICAL: Export failed {"error":"Attempted to lazy load [roles] on model [App\\Models\\User] but lazy loading is disabled.","type":"Illuminate\\Database\\LazyLoadingViolationException","file":"C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasAttributes.php","line":595,"trace":"#0 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasAttributes.php(554): Illuminate\\Database\\Eloquent\\Model->handleLazyLoadingViolation('roles')
+#1 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\HasAttributes.php(485): Illuminate\\Database\\Eloquent\\Model->getRelationValue('roles')
+#2 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Model.php(2260): Illuminate\\Database\\Eloquent\\Model->getAttribute('roles')
+#3 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\app\\Http\\Controllers\\Api\\WarehouseController.php(129): Illuminate\\Database\\Eloquent\\Model->__get('roles')
+#4 [internal function]: App\\Http\\Controllers\\Api\\WarehouseController->App\\Http\\Controllers\\Api\\{closure}(Object(App\\Models\\User), 0)
+#5 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Arr.php(609): array_map(Object(Closure), Array, Array)
+#6 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Collection.php(799): Illuminate\\Support\\Arr::map(Array, Object(Closure))
+#7 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Collection.php(388): Illuminate\\Support\\Collection->map(Object(Closure))
+#8 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\app\\Http\\Controllers\\Api\\WarehouseController.php(124): Illuminate\\Database\\Eloquent\\Collection->map(Object(Closure))
+#9 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php(47): App\\Http\\Controllers\\Api\\WarehouseController->exportWarehouseData(1, Object(Illuminate\\Http\\Request))
+#10 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(266): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Api\\WarehouseController), 'exportWarehouse...')
+#11 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php(212): Illuminate\\Routing\\Route->runController()
+#12 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(808): Illuminate\\Routing\\Route->run()
+#13 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(170): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\app\\Http\\Middleware\\EnsureRole.php(61): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#15 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): App\\Http\\Middleware\\EnsureRole->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'admin', 'super_admin')
+#16 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#17 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#18 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(64): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#20 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Auth\\Middleware\\Authenticate.php(64): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Auth\\Middleware\\Authenticate->handle(Object(Illuminate\\Http\\Request), Object(Closure), 'sanctum')
+#22 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#23 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#24 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php(26): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(170): Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful->Laravel\\Sanctum\\Http\\Middleware\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\AuthenticateSession.php(35): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Laravel\\Sanctum\\Http\\Middleware\\AuthenticateSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#31 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#33 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#34 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#35 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#38 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php(61): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(191): Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful->Laravel\\Sanctum\\Http\\Middleware\\{closure}(Object(Illuminate\\Http\\Request), Object(Closure))
+#42 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\sanctum\\src\\Http\\Middleware\\EnsureFrontendRequestsAreStateful.php(25): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#44 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#46 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#47 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#48 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#49 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#50 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#51 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#52 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#53 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(170): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#55 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#56 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#60 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#61 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#64 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(62): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#65 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#66 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#67 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(209): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#70 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(127): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#71 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#72 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#73 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1220): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#74 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#75 C:\\Users\\ICN\\Desktop\\Arabic-Inventory-System\\laravel-backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\ICN\\\\De...')
+#76 {main}"} 
+[2026-05-05 10:52:32] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses/1/export","request_method":"GET"} 
+[2026-05-05 10:52:32] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:52:32] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:52:32] local.INFO: Activity logged {"action":"تصدير بيانات مخزن","detail":"تصدير المستخدمين لمخزن المخزن الرئيسي","username":"jamel","admin_id":2} 
+[2026-05-05 10:52:47] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users/permissions","request_method":"GET"} 
+[2026-05-05 10:52:47] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:52:47] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:52:49] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/warehouses","request_method":"GET"} 
+[2026-05-05 10:52:49] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:52:49] local.INFO: Role check result {"has_required_role":true} 
+[2026-05-05 10:52:49] local.INFO: EnsureRole middleware check {"user_id":2,"user_roles":["admin"],"required_roles":["admin","super_admin"],"request_path":"api/users","request_method":"GET"} 
+[2026-05-05 10:52:49] local.INFO: Checking role {"role":"admin","has_role":true} 
+[2026-05-05 10:52:49] local.INFO: Role check result {"has_required_role":true} 
