@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WarehouseController;
+use App\Http\Controllers\Api\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,11 +81,23 @@ Route::middleware('auth:sanctum')->group(function (): void {
     });
 
     // Admin and SuperAdmin only
+<<<<<<< Updated upstream
     Route::middleware('role:admin,super_admin')->group(function (): void {
         Route::post('warehouses', [WarehouseController::class, 'store']);
         Route::patch('warehouses/{id}', [WarehouseController::class, 'update'])->whereNumber('id');
         Route::delete('warehouses/{id}', [WarehouseController::class, 'destroy'])->whereNumber('id');
+=======
+    Route::middleware(['auth', 'role:admin,super_admin'])->group(function (): void {
+        Route::controller(WarehouseController::class)->group(function (): void {
+            Route::get('warehouses',  'index');
+            Route::post('warehouses',  'store');
+            Route::patch('warehouses/{id}',  'update')->whereNumber('id');
+            Route::delete('warehouses/{id}',  'destroy')->whereNumber('id');
+>>>>>>> Stashed changes
 
+        });
+
+        
         Route::get('users', [UserController::class, 'index']);
         Route::post('users', [UserController::class, 'store']);
         Route::patch('users/{user}', [UserController::class, 'update'])->whereNumber('user');
@@ -92,18 +105,44 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::get('users/roles', [UserController::class, 'getRoles']);
 
         // Subscriptions management
-        Route::get('subscriptions', [\App\Http\Controllers\Api\SubscriptionController::class, 'index']);
-        Route::post('subscriptions', [\App\Http\Controllers\Api\SubscriptionController::class, 'store']);
-        Route::get('subscriptions/{subscription}', [\App\Http\Controllers\Api\SubscriptionController::class, 'show'])->whereNumber('subscription');
-        Route::patch('subscriptions/{subscription}', [\App\Http\Controllers\Api\SubscriptionController::class, 'update'])->whereNumber('subscription');
-        Route::delete('subscriptions/{subscription}', [\App\Http\Controllers\Api\SubscriptionController::class, 'destroy'])->whereNumber('subscription');
-        Route::get('users/{user}/subscriptions', [\App\Http\Controllers\Api\SubscriptionController::class, 'getUserSubscriptions'])->whereNumber('user');
-        Route::get('subscriptions/active', [\App\Http\Controllers\Api\SubscriptionController::class, 'getActiveSubscriptions']);
-        Route::get('subscriptions/expired', [\App\Http\Controllers\Api\SubscriptionController::class, 'getExpiredSubscriptions']);
-        Route::get('users/permissions', [UserController::class, 'getPermissions']);
-        Route::patch('users/{user}/permissions', [UserController::class, 'updatePermissions'])->whereNumber('user');
+        Route::controller(SubscriptionController::class)
+            ->group(function (): void {
+
+<<<<<<< Updated upstream
+        Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin,super_admin');
+        Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');
+=======
+                Route::get('subscriptions', 'index');
+                Route::post('subscriptions', 'store');
+                Route::get('subscriptions/{subscription}', 'show')->whereNumber('subscription');
+                Route::patch('subscriptions/{subscription}', 'update')->whereNumber('subscription');
+                Route::delete('subscriptions/{subscription}', 'destroy')->whereNumber('subscription');
+                Route::get('users/{user}/subscriptions', 'getUserSubscriptions')->whereNumber('user');
+                Route::get('subscriptions/active', 'getActiveSubscriptions');
+                Route::get('subscriptions/expired', 'getExpiredSubscriptions');
+                Route::get('users/permissions', 'getPermissions');
+                Route::patch('users/{user}/permissions', 'updatePermissions')->whereNumber('user');
+            });
+        // Settings routes
+
+        Route::controller(SettingsController::class)
+            ->prefix('settings')
+            ->group(function (): void {
+                Route::get('settings/theme', 'getThemeSettings');
+                Route::patch('settings/theme', 'updateThemeSettings');
+                Route::post('settings/theme/reset', 'resetThemeSettings');
+                Route::get('settings/company', 'getCompanySettings');
+                Route::patch('settings/company', 'updateCompanySettings');
+                Route::get('settings/all', 'getAllSettings');
+                Route::match(['patch', 'put'], 'settings', 'update');
+            });
+
+
 
         Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin,super_admin');
         Route::delete('logs', [ActivityLogController::class, 'destroy'])->middleware('role:super_admin');
+
+
+>>>>>>> Stashed changes
     });
 });
