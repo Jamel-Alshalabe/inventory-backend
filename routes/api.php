@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WarehouseController;
+use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -90,6 +92,9 @@ Route::middleware('auth:sanctum')->group(function (): void {
             Route::patch('warehouses/{id}',  'update')->whereNumber('id');
             Route::delete('warehouses/{id}',  'destroy')->whereNumber('id');
         });
+
+        Route::apiResource('clients', ClientController::class)->whereNumber('client');
+        Route::apiResource('suppliers', SupplierController::class)->whereNumber('supplier');
 
         
         Route::get('users', [UserController::class, 'index']);

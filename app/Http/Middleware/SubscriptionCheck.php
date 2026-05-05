@@ -18,21 +18,17 @@ class SubscriptionCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Get the authenticated user from the login attempt
         $user = $this->getUserFromLoginRequest($request);
         
         if (!$user) {
-            // If we can't determine the user, let the login process continue
-            // The authentication will fail normally if credentials are wrong
             return $next($request);
         }
 
+        // Direct database check for super_admin to bypass any Laratrust caching/loading issues
+        $isSuperAdmin = $user->roles()->where('name', 'super_admin')->exists();
+
         // SuperAdmin can always login without subscription check
-        if ($user->hasRole('super_admin')) {
-            Log::info('SuperAdmin login - bypassing subscription check', [
-                'user_id' => $user->id,
-                'username' => $user->username
-            ]);
+        if ($isSuperAdmin) {
             return $next($request);
         }
 
@@ -40,13 +36,6 @@ class SubscriptionCheck
         $subscription = $this->getActiveSubscriptionForUser($user);
         
         if (!$subscription) {
-            Log::warning('Login denied - no active subscription', [
-                'user_id' => $user->id,
-                'username' => $user->username,
-                'user_roles' => $user->roles->pluck('name')->toArray(),
-                'admin_id' => $user->admin_id
-            ]);
-            
             return response()->json([
                 'message' => 'لا يمكن تسجيل الدخول. لا يوجد اشتراك نشط.',
                 'error_type' => 'subscription_expired',
@@ -56,13 +45,7 @@ class SubscriptionCheck
 
         // Check if subscription is still valid
         if (!$this->isSubscriptionValid($subscription)) {
-            Log::warning('Login denied - subscription expired', [
-                'user_id' => $user->id,
-                'username' => $user->username,
-                'subscription_id' => $subscription->id,
-                'end_date' => $subscription->end_date,
-                'is_active' => $subscription->is_active
-            ]);
+          
             
             return response()->json([
                 'message' => 'لا يمكن تسجيل الدخول. انتهت صلاحية الاشتراك.',
@@ -72,12 +55,7 @@ class SubscriptionCheck
             ], 403);
         }
 
-        Log::info('Subscription check passed', [
-            'user_id' => $user->id,
-            'username' => $user->username,
-            'subscription_id' => $subscription->id,
-            'subscription_end_date' => $subscription->end_date
-        ]);
+       
 
         return $next($request);
     }
@@ -107,10 +85,6 @@ class SubscriptionCheck
         if ($user->admin_id) {
             $admin = User::find($user->admin_id);
             if (!$admin) {
-                Log::error('Admin not found for user', [
-                    'user_id' => $user->id,
-                    'admin_id' => $user->admin_id
-                ]);
                 return null;
             }
 
